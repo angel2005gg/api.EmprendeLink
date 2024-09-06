@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class create_reviews extends Model
 {
+    protected $fillable = ['qualification', 'comment','emprendimientos_id','inversionistas_id'];
+    // protected $table = 'reviews';
+    protected $primaryKey = 'id';
+    
+
     use HasFactory;
     public function inversionista()
     {
@@ -22,8 +27,6 @@ class create_reviews extends Model
         return $this->belongsTo(Emprendimiento::class);
     }
 
-
-    protected $fillable = ['qualification', 'comment'];
 
     // Lista blanca de relaciones permitidas para incluir en las consultas
     protected $allowIncluded = ['emprendimiento', 'inversionista'];

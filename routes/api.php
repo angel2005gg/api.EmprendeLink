@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CreateReviewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -88,3 +89,11 @@ use Illuminate\Support\Facades\Route;
     // Route::get('conexiones/{conexion}', [conexionController::class, 'show'])->name('api.conexiones.show');
     // Route::put('conexiones/{conexion}', [conexionController::class, 'update'])->name('api.conexiones.update');
     // Route::delete('conexiones/{conexion}', [conexionController::class, 'destroy'])->name('api.conexiones.destroy');
+
+    Route::prefix('review')->group(function(){
+        Route::post('/create',[CreateReviewsController::class,'store']);
+        Route::get('/listar',[CreateReviewsController::class,'index']);
+        Route::get('/show/{id}',[CreateReviewsController::class,'show']);
+        Route::put('/update/{create_review}',[CreateReviewsController::class,'update']);
+        Route::delete('/delete/{create_review}',[CreateReviewsController::class,'destroy']);
+    });

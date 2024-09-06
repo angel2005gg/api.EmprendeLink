@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as RoutingController;
 
 class CreateReviewsController extends RoutingController
 {
-    
+
      /**
      * Display a listing of the resource.
      *
@@ -35,10 +35,8 @@ class CreateReviewsController extends RoutingController
     {
 
         $request->validate([
-            'qualification' => 'required|max:255',
-            'comment' => 'required|max:255',
-
-
+            'qualification' => '|max:255',
+            'comment' => '|max:255',
         ]);
 
         $create_review = create_reviews::create($request->all());
@@ -74,23 +72,18 @@ class CreateReviewsController extends RoutingController
      */
     public function update(Request $request, create_reviews $create_review)
     {
-        $request->validate([
-            'qualification' => 'required|max:255',
-            'comment' => 'required|max:255' . $create_review->id,
+        // $request->validate([
+        //     'qualification' => 'required|max:255',
+        //     'comment' => 'required|max:255'
 
-        ]);
+        // ]);
 
         $create_review->update($request->all());
 
         return response()->json($create_review);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(create_reviews $create_review)
     {
         $create_review->delete();
