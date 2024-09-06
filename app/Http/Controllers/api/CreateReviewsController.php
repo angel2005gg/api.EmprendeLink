@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\crear_resenas;
+use App\Models\create_reviews;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
-class CrearResenasController extends RoutingController
+class CreateReviewsController extends RoutingController
 {
     
      /**
@@ -17,12 +17,12 @@ class CrearResenasController extends RoutingController
      */
     public function index()
     {
-        //$cear_resena=crear_resenas::all();
-         $cear_resena = crear_resenas::included()->get();
+        //$create_review=create_reviews::all();
+         $create_review = create_reviews::included()->get();
         // $categories=Category::included()->filter();
         // $categories=Category::included()->filter()->sort()->get();
         // $categories=Category::included()->filter()->sort()->getOrPaginate();
-        return response()->json($cear_resena);
+        return response()->json($create_review);
     }
 
     /**
@@ -41,9 +41,9 @@ class CrearResenasController extends RoutingController
 
         ]);
 
-        $cear_resena = crear_resenas::create($request->all());
+        $create_review = create_reviews::create($request->all());
 
-        return response()->json($cear_resena);
+        return response()->json($create_review);
     }
 
     /**
@@ -59,8 +59,8 @@ class CrearResenasController extends RoutingController
         // $category = Category::with(['posts.user'])->findOrFail($id);
         // $category = Category::with(['posts'])->findOrFail($id);
         // $category = Category::included();
-        $cear_resena = crear_resenas::included()->findOrFail($id);
-        return response()->json($cear_resena);
+        $create_review = create_reviews::included()->findOrFail($id);
+        return response()->json($create_review);
         //http://api.codersfree1.test/v1/categories/1/?included=posts.user
 
     }
@@ -72,17 +72,17 @@ class CrearResenasController extends RoutingController
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, crear_resenas $cear_resena)
+    public function update(Request $request, create_reviews $create_review)
     {
         $request->validate([
             'qualification' => 'required|max:255',
-            'comment' => 'required|max:255' . $cear_resena->id,
+            'comment' => 'required|max:255' . $create_review->id,
 
         ]);
 
-        $cear_resena->update($request->all());
+        $create_review->update($request->all());
 
-        return response()->json($cear_resena);
+        return response()->json($create_review);
     }
 
     /**
@@ -91,9 +91,9 @@ class CrearResenasController extends RoutingController
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(crear_resenas $cear_resena)
+    public function destroy(create_reviews $create_review)
     {
-        $cear_resena->delete();
-        return response()->json($cear_resena);
+        $create_review->delete();
+        return response()->json($create_review);
     }
 }

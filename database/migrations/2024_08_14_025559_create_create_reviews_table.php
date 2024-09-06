@@ -11,19 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('conexions', function (Blueprint $table) {
-            $table->id('id_conexion');
-            $table->integer("chat");
-            $table->unsignedBigInteger('emprendedors_id')->nullable();
-            $table->foreign('emprendedors_id')
+        Schema::create('create_reviews', function (Blueprint $table) {
+            $table->id();
+            $table->string('qualification');//calificacion
+            $table->string('comment');//comentario
+
+            $table->unsignedBigInteger('emprendimientos_id')->nullable();
+            $table->foreign('emprendimientos_id')
             ->references('id')
-            ->on('emprendedors')->onDelete('cascade');
+            ->on('emprendimientos')->onDelete('cascade');
 
             $table->unsignedBigInteger('inversionistas_id')->nullable();
             $table->foreign('inversionistas_id')
             ->references('id')
             ->on('inversionistas')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('conexions');
+        Schema::dropIfExists('create_reviews');
     }
 };

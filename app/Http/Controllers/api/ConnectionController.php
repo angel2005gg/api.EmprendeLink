@@ -6,7 +6,7 @@ use App\Models\Conexion;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
-class ConexionController extends RoutingController
+class ConnectionController extends RoutingController
 {
     /**
      * Display a listing of the resource.

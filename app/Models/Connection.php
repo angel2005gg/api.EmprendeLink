@@ -11,7 +11,7 @@ class Conexion extends Model
 
 
     use HasFactory;
-    protected $primaryKey = 'id_conexion';
+    protected $primaryKey = 'id_connection';
 
     protected $fillable = ['chat', 'emprendedors_id', 'inversionistas_id'];
 }

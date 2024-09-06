@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class crear_resenas extends Model
+class create_reviews extends Model
 {
     use HasFactory;
     public function inversionista()
