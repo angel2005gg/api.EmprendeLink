@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Conexion;
+use App\Models\Connection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
@@ -15,8 +15,8 @@ class ConnectionController extends RoutingController
      */
     public function index()
     {
-        $conexiones = Conexion::all();
-        return response()->json($conexiones);
+        $connections = Connection::all();
+        return response()->json($connections);
     }
 
     /**
@@ -29,13 +29,13 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'emprendedors_id' => 'required|exists:emprendedors,id',
-            'inversionistas_id' => 'required|exists:inversionistas,id',
+            'emprendedors_id',
+            'inversionistas_id',
         ]);
 
-        $conexion = Conexion::create($request->all());
+        $connection = Connection::create($request->all());
 
-        return response()->json($conexion);
+        return response()->json($connection);
     }
 
     /**
@@ -44,21 +44,21 @@ class ConnectionController extends RoutingController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_conexion)
+    public function show($id_connection)
     {
 
-        $conexion = Conexion::findOrFail($id_conexion);
-        return response()->json($conexion);
+        $connection = Connection::findOrFail($id_connection);
+        return response()->json($connection);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Conexion  $conexion
+     * @param  \App\Models\Connection  $connection
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Conexion $conexion)
+    public function update(Request $request, Connection $connection)
     {
         $request->validate([
             'chat' => 'required|max:255',
@@ -66,20 +66,20 @@ class ConnectionController extends RoutingController
             'inversionistas_id' => 'required|exists:inversionistas,id',
         ]);
 
-        $conexion->update($request->all());
+        $connection->update($request->all());
 
-        return response()->json($conexion);
+        return response()->json($connection);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Conexion  $conexion
+     * @param  \App\Models\Connection  $connection
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Conexion $conexion)
+    public function destroy(Connection $connection)
     {
-        $conexion->delete();
-        return response()->json($conexion);
+        $connection->delete();
+        return response()->json($connection);
     }
 }

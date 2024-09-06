@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ConnectionController;
 use App\Http\Controllers\Api\CreateReviewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -96,4 +97,13 @@ use Illuminate\Support\Facades\Route;
         Route::get('/show/{id}',[CreateReviewsController::class,'show']);
         Route::put('/update/{create_review}',[CreateReviewsController::class,'update']);
         Route::delete('/delete/{create_review}',[CreateReviewsController::class,'destroy']);
+    });
+
+
+    Route::prefix('connection')->group(function(){
+        Route::post('/create',[ConnectionController::class,'store']);
+        Route::get('/listar',[ConnectionController::class,'index']);
+        Route::get('/show/{id}',[ConnectionController::class,'show']);
+        Route::put('/update/{Connection}',[ConnectionController::class,'update']);
+        Route::delete('/delete/{Connection}',[ConnectionController::class,'destroy']);
     });
