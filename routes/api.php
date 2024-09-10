@@ -91,7 +91,7 @@ use Illuminate\Support\Facades\Route;
 // Route::delete('connections/{connection}', [ConnectionController::class, 'destroy'])->name('api.connections.destroy');
 
 
-    Route::prefix('review')->group(function(){
+    Route::prefix(prefix: 'review')->group(function(){
         Route::post('/create',[CreateReviewsController::class,'store']);
         Route::get('/listar',[CreateReviewsController::class,'index']);
         Route::get('/show/{id}',[CreateReviewsController::class,'show']);

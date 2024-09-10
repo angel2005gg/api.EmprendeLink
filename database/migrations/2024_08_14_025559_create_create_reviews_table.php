@@ -16,15 +16,15 @@ return new class extends Migration
             $table->string('qualification');//calificacion
             $table->string('comment');//comentario
 
-            $table->unsignedBigInteger('emprendimientos_id')->nullable();
-            $table->foreign('emprendimientos_id')
+            $table->unsignedBigInteger('entrepreneurships_id')->nullable();
+            $table->foreign('entrepreneurships_id')
             ->references('id')
-            ->on('emprendimientos')->onDelete('cascade');
+            ->on('entrepreneurships')->onDelete('cascade');
 
-            $table->unsignedBigInteger('inversionistas_id')->nullable();
-            $table->foreign('inversionistas_id')
+            $table->unsignedBigInteger('investors_id')->nullable();
+            $table->foreign('investors_id')
             ->references('id')
-            ->on('inversionistas')->onDelete('cascade');
+            ->on('investors')->onDelete('cascade');
             $table->timestamps();
         });
     }

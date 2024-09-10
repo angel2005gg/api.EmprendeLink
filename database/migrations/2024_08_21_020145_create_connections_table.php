@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->id('id_connection');
             $table->integer("chat");
-            $table->unsignedBigInteger('emprendedors_id')->nullable();
-            $table->foreign('emprendedors_id')
+            $table->unsignedBigInteger('entrepreneurs_id')->nullable();
+            $table->foreign('entrepreneurs_id')
             ->references('id')
-            ->on('emprendedors')->onDelete('cascade');
+            ->on('entrepreneurs')->onDelete('cascade');
 
-            $table->unsignedBigInteger('inversionistas_id')->nullable();
-            $table->foreign('inversionistas_id')
+            $table->unsignedBigInteger('investors_id')->nullable();
+            $table->foreign('investors_id')
             ->references('id')
-            ->on('inversionistas')->onDelete('cascade');
+            ->on('investors')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('EntrepreneurLists', function (Blueprint $table) {
+        Schema::create('entrepreneursLists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('entrepreneur_id')->nullable();
-            $table->foreign('entrepreneur_id')
+            $table->unsignedBigInteger('entrepreneurs_id')->nullable();
+            $table->foreign('entrepreneurs_id')
                   ->references('id')
                   ->on('entrepreneurs')->onDelete('cascade');
             $table->timestamps();
 
-            $table->unsignedBigInteger('investor_id')->nullable();
-            $table->foreign('investor_id')
+            $table->unsignedBigInteger('investors_id')->nullable();
+            $table->foreign('investors_id')
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
         });
