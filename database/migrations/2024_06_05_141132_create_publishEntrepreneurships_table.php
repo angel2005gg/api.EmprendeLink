@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publicar__emprendimientos', function (Blueprint $table) {
+        Schema::create('publishEntrepreneurships', function (Blueprint $table) {
             $table->id();
             
             $table->string('name');
             $table->integer('phone_number');
-            $table->string('mail');
+            $table->string('email');
             $table->string('description');
             $table->string('location');
             $table->string('url');
-            $table->date('date_exp');
+            $table->date('expiration_date');
              
-            $table->unsignedBigInteger('emprendedors_id')->nullable();
-            $table->foreign('emprendedors_id')
-            ->references('id')
-            ->on('emprendedors')->onDelete('cascade');
+            $table->unsignedBigInteger('entrepreneurs_id')->nullable();
+            $table->foreign('entrepreneurs_id')
+                ->references('id')
+                ->on('entrepreneurs')->onDelete('cascade');
           
-
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publicar__emprendimientos');
+        Schema::dropIfExists('publishEntrepreneurships');
     }
 };

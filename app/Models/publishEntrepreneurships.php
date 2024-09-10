@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Publicar_Emprendimiento extends Model
+class publishEntrepreneurships extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,7 @@ class Publicar_Emprendimiento extends Model
     }
 
     public function emprendedors(){
-        return $this->belongsTo(Emprendedor::class);
+        return $this->belongsTo(Entrepreneur::class);
     }
 
 
