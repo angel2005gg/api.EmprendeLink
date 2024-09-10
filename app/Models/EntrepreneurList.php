@@ -3,7 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class usuarios_emprendedors extends Model
+class EntrepreneurList extends Model
 {
     use HasFactory;
 // modelos de usuario emprendedor "User_enterprising" en el otro proyecto
