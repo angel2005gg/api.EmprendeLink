@@ -29,8 +29,8 @@ class EntrepreneurListController extends RoutingController
     public function store(Request $request)
     {
         $request->validate([
-            'entrepreneur_id' => 'required|exists:entrepreneurs,id',
-            'investor_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
 
         $entrepreneurList = EntrepreneurList::create($request->all());
@@ -61,8 +61,8 @@ class EntrepreneurListController extends RoutingController
     public function update(Request $request, EntrepreneurList $entrepreneurList)
     {
         $request->validate([
-            'entrepreneur_id' => 'required|exists:entrepreneurs,id',
-            'investor_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
 
         $entrepreneurList->update($request->all());
