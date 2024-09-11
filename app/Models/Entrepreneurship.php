@@ -6,44 +6,39 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class emprendimiento extends Model
+class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepreneurship"
 {
     use HasFactory;
 
+    // Actualizado $fillable en base a los campos proporcionados en la migración
     protected $fillable = [
-        'nombre_emprendimiento', 'descripcion', 'especificaciones', 'categoria'
+        'number', 'entrepreneur_id', 'investor_id'
     ];
 
     protected $allowIncluded = [
-        'inversionista', 'emprendedor', 'publicar_emprendimientos', 'crear_resenas'
+        'entrepreneur', 'investor', 'publishEntrepreneurships',
     ];
 
-    protected $allowFilter = ['id', 'nombre_emprendimiento', 'categoria'];
+    protected $allowFilter = ['id', 'number', 'entrepreneur_id', 'investor_id'];
 
-    protected $allowSort = ['id', 'nombre_emprendimiento', 'categoria'];
+    protected $allowSort = ['id', 'number', 'entrepreneur_id', 'investor_id'];
 
     // Relaciones
 
-    public function emprendedor()
+    public function entrepreneur() // Método de relación para Entrepreneur
     {
-        return $this->belongsTo(Emprendedor::class);
+        return $this->belongsTo(Entrepreneur::class);
     }
 
-    public function Publicar_Emprendimientos()
+    public function publishEntrepreneurships() // Método de relación para PublishEntrepreneurships
     {
-        return $this->belongsTo(Publicar_Emprendimiento::class);
+        return $this->belongsTo(PublishEntrepreneurships::class);
     }
 
-    public function inversionista()
+    public function investor() // Método de relación para Investor
     {
-        return $this->belongsTo(Inversionista::class);
+        return $this->belongsTo(Investor::class);
     }
-
-    public function crear_resenas()
-    {
-        return $this->hasMany(Crear_resenas::class);
-    }
-
 
     // Scope para incluir relaciones
     public function scopeIncluded(Builder $query)
