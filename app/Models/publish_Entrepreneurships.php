@@ -7,22 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class publishEntrepreneurships extends Model
+class publish_Entrepreneurships extends Model
 {
     use HasFactory;
+    protected $table = "publish_Entrepreneurships" ;
 
     public function emprendimientos (){
         return $this->hasMany(emprendimiento::class);
     }
 
-    public function emprendedors(){
+    public function Entrepreneurs(){
         return $this->belongsTo(Entrepreneur::class);
     }
 
 
     //Campos que se van a asignacion masiva:
 
-    protected $fillable = ['name','phone_number','mail','description','location','url','date_exp'];
+    protected $fillable = ['name','phone_number','email','description','location','url','expiration_date'];
     protected $allowIncluded = ['emprendedors'];//las posibles Querys que se pueden realizar
 
     protected $allowFilter = ['id', 'name'];

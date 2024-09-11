@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\publish_Entrepreneurships;
 use App\Models\PublishEntrepreneurships;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
@@ -10,13 +11,13 @@ class PublishEntrepreneurshipsController extends RoutingController
 {
     public function index()
     {
-        $publishEntrepreneurships = PublishEntrepreneurships::all();
+        $publishEntrepreneurships = publish_Entrepreneurships::all();
         // $publishEntrepreneurships = PublishEntrepreneurship::included()->get();
         // $categories=Category::included()->filter();
         // $categories=Category::included()->filter()->sort()->get();
         // $categories=Category::included()->filter()->sort()->getOrPaginate();
 
-        $publishEntrepreneurships = PublishEntrepreneurships::included()->get();
+        $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
         return response()->json($publishEntrepreneurships);
     }
 
@@ -32,17 +33,17 @@ class PublishEntrepreneurshipsController extends RoutingController
             'expiration_date' => 'required|max:255',
         ]);
 
-        $publishEntrepreneurship = PublishEntrepreneurships::create($request->all());
+        $publishEntrepreneurship = publish_Entrepreneurships::create($request->all());
         return response()->json($publishEntrepreneurship);
     }
 
     public function show($id)
     {
-        $publishEntrepreneurship = PublishEntrepreneurships::included()->findOrFail($id);
+        $publishEntrepreneurship = publish_Entrepreneurships::included()->findOrFail($id);
         return response()->json($publishEntrepreneurship);
     }
 
-    public function update(Request $request, PublishEntrepreneurships $publishEntrepreneurship)
+    public function update(Request $request, publish_Entrepreneurships $publishEntrepreneurship)
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -58,7 +59,7 @@ class PublishEntrepreneurshipsController extends RoutingController
         return response()->json($publishEntrepreneurship);
     }
 
-    public function destroy(PublishEntrepreneurships $publishEntrepreneurship)
+    public function destroy(publish_Entrepreneurships $publishEntrepreneurship)
     {
         $publishEntrepreneurship->delete();
         return response()->json($publishEntrepreneurship);

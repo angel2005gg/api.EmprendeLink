@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('qualification'); // Rating
             $table->string('comment'); // Comment
             
-            $table->unsignedBigInteger('publishEntrepreneurships_id')->nullable();
-            $table->foreign('publishEntrepreneurships_id')
+            $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
+            $table->foreign('publish_Entrepreneurships_id')
                 ->references('id')
-                ->on('publishEntrepreneurships')->onDelete('cascade');
+                ->on('publish_Entrepreneurships')->onDelete('cascade');
             $table->timestamps();
         });
     }
