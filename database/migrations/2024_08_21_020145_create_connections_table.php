@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->id('id_connection');
             $table->integer("chat");
+            
+            
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')
             ->references('id')

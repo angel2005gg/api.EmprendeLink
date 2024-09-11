@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ConnectionController;
-use App\Http\Controllers\Api\CreateReviewsController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\EntrepreneurController;
 use App\Http\Controllers\Api\EntrepreneurListController;
 use Illuminate\Http\Request;
@@ -59,11 +59,11 @@ use Illuminate\Support\Facades\Route;
     // Route::delete('publicare/{publicar_emprendimiento}', [PublicarEmprendimientoController::class,'destroy'])->name('api.publicar__emprendimientos.delete');
 
 
-    // Route::get('resena', [ResenaController::class,'index'])->name('api.resenas.index');
-    // Route::post('resena', [ResenaController::class,'store'])->name('api.resenas.store');
-    // Route::get('resena/{resena}', [ResenaController::class,'show'])->name('api.resenas.show');
-    // Route::put('resena/{resena}', [ResenaController::class,'update'])->name('api.resenas.update');
-    // Route::delete('resena/{resena}', [ResenaController::class,'destroy'])->name('api.resenas.delete');
+    Route::get('review', [ReviewController::class,'index'])->name('api.reviews.index');
+    Route::post('review', [ReviewController::class,'store'])->name('api.reviews.store');
+    Route::get('review/{review}', [ReviewController::class,'show'])->name('api.reviews.show');
+    Route::put('review/{review}', [ReviewController::class,'update'])->name('api.reviews.update');
+    Route::delete('review/{review}', [ReviewController::class,'destroy'])->name('api.reviews.delete');
 
     // Route::get('cear_resena', [CrearResenasController::class,'index'])->name('api.crear_resenas.index');
     // Route::post('cear_resena', [CrearResenasController::class,'store'])->name('api.crear_resenas.store');
@@ -87,16 +87,16 @@ use Illuminate\Support\Facades\Route;
     Route::get('connections', [ConnectionController::class, 'index'])->name('api.connections.index');
     Route::post('connections', [ConnectionController::class, 'store'])->name('api.connections.store');
     Route::get('connections/{connection}', [ConnectionController::class, 'show'])->name('api.connections.show');
-    Route::put('connections/{connection}', [ConnectionController::class, 'update'])->name('api.connections.update');
-    Route::delete('connections/{connection}', [ConnectionController::class, 'destroy'])->name('api.connections.destroy');
+    Route::put('connection/{connection}', [ConnectionController::class,'update'])->name('api.connections.update');
+    Route::delete('connection/{connection}', [ConnectionController::class,'destroy'])->name('api.connections.delete');
 
 
     Route::prefix(prefix: 'review')->group(function(){
-        Route::post('/create',[CreateReviewsController::class,'store']);
-        Route::get('/listar',[CreateReviewsController::class,'index']);
-        Route::get('/show/{id}',[CreateReviewsController::class,'show']);
-        Route::put('/update/{create_review}',[CreateReviewsController::class,'update']);
-        Route::delete('/delete/{create_review}',[CreateReviewsController::class,'destroy']);
+        Route::post('/create',[ReviewController::class,'store']);
+        Route::get('/listar',[ReviewController::class,'index']);
+        Route::get('/show/{id}',[ReviewController::class,'show']);
+        Route::put('/update/{review}',[ReviewController::class,'api.reviews.update']);
+        Route::delete('/delete/{review}',[ReviewController::class,'destroy']);
     });
 
 

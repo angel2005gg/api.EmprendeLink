@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class Resena extends Model
+class Review extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class Resena extends Model
     // // Relación muchos a muchos con Emprendedores
     public function emprendedors()
     {
-        return $this->belongsToMany(Emprendedor::class);
+        return $this->belongsToMany(Entrepreneur::class);
     }
 
     // // Scope para incluir relaciones

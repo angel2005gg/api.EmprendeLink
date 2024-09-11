@@ -29,9 +29,10 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'emprendedors_id',
-            'inversionistas_id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',  // Corregido
+            'investors_id' => 'required|exists:investors,id',
         ]);
+        
 
         $connection = Connection::create($request->all());
 
@@ -62,8 +63,8 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'emprendedors_id' => 'required|exists:emprendedors,id',
-            'inversionistas_id' => 'required|exists:inversionistas,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
 
         $connection->update($request->all());

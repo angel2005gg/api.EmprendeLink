@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Resena;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
-class ResenaController extends RoutingController
+class ReviewController extends RoutingController
 {
      /**
      * Display a listing of the resource.
@@ -15,12 +15,12 @@ class ResenaController extends RoutingController
      */
     public function index()
     {
-        //$resena=Resena::all();
-        $resena = Resena::included()->get();
+        $review=Review::all();
+        $review = Review::included()->get();
         // $categories=Category::included()->filter();
         // $categories=Category::included()->filter()->sort()->get();
         // $categories=Category::included()->filter()->sort()->getOrPaginate();
-        return response()->json($resena);
+        return response()->json($review);
     }
 
     /**
@@ -39,9 +39,9 @@ class ResenaController extends RoutingController
 
         ]);
 
-        $resena = Resena::create($request->all());
+        $review = Review::create($request->all());
 
-        return response()->json($resena);
+        return response()->json($review);
     }
 
     /**
@@ -57,8 +57,8 @@ class ResenaController extends RoutingController
         // $category = Category::with(['posts.user'])->findOrFail($id);
         // $category = Category::with(['posts'])->findOrFail($id);
         // $category = Category::included();
-        $resena = Resena::included()->findOrFail($id);
-        return response()->json($resena);
+        $review = Review::included()->findOrFail($id);
+        return response()->json($review);
         //http://api.codersfree1.test/v1/categories/1/?included=posts.user
 
     }
@@ -70,17 +70,17 @@ class ResenaController extends RoutingController
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resena $resena)
+    public function update(Request $request, Review $review)
     {
         $request->validate([
             'qualification' => 'required|max:255',
-            'comment' => 'required|max:255' . $resena->id,
+            'comment' => 'required|max:255' . $review->id,
 
         ]);
 
-        $resena->update($request->all());
+        $review->update($request->all());
 
-        return response()->json($resena);
+        return response()->json($review);
     }
 
     /**
@@ -89,9 +89,9 @@ class ResenaController extends RoutingController
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resena $resena)
+    public function destroy(Review $review)
     {
-        $resena->delete();
-        return response()->json($resena);
+        $review->delete();
+        return response()->json($review);
     }
 }
