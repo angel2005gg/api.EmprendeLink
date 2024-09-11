@@ -3,9 +3,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class entrepreneursLists extends Model
+class entrepreneursList extends Model
 {
     use HasFactory;
+
+    protected $table = 'entrepreneursLists'; 
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
 
@@ -17,4 +19,6 @@ class entrepreneursLists extends Model
         return $this->belongsTo(Entrepreneur::class);
     }
 
+
+    
 }

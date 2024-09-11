@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\entrepreneursLists;
+use App\Models\entrepreneursList;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
@@ -10,12 +10,12 @@ class EntrepreneurListController extends RoutingController
 {
     /**
      * Display a listing of the resource.
-     *
+     *entrepreneursLists
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $entrepreneurLists = entrepreneursLists::all();
+        $entrepreneurLists = entrepreneursList::all();
 
         return response()->json($entrepreneurLists);
     }
@@ -33,7 +33,7 @@ class EntrepreneurListController extends RoutingController
             'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList = entrepreneursLists::create($request->all());
+        $entrepreneurList = entrepreneursList::create($request->all());
 
         return response()->json($entrepreneurList);
     }
@@ -46,7 +46,7 @@ class EntrepreneurListController extends RoutingController
      */
     public function show($id)
     {
-        $entrepreneurList = entrepreneursLists::findOrFail($id);
+        $entrepreneurList = entrepreneursList::findOrFail($id);
 
         return response()->json($entrepreneurList);
     }
@@ -58,7 +58,7 @@ class EntrepreneurListController extends RoutingController
      * @param  \App\Models\entrepreneursLists  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, entrepreneursLists $entrepreneurList)
+    public function update(Request $request, entrepreneursList $entrepreneurList)
     {
         $request->validate([
             'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
@@ -76,7 +76,7 @@ class EntrepreneurListController extends RoutingController
      * @param  \App\Models\entrepreneursLists  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(entrepreneursLists $entrepreneurList)
+    public function destroy(entrepreneursList $entrepreneurList)
     {
         $entrepreneurList->delete();
 

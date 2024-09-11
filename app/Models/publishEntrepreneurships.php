@@ -15,7 +15,7 @@ class publishEntrepreneurships extends Model
         return $this->hasMany(emprendimiento::class);
     }
 
-    public function emprendedors(){
+    public function Entrepreneurs(){
         return $this->belongsTo(Entrepreneur::class);
     }
 

@@ -11,8 +11,8 @@ class investor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'lastname', 'Nacimiento', 'telefono',
-        'contraseña', 'correo', 'ubicacion'
+        'name', 'lastname', 'birth_date','investment_number', 'password',
+        'document', 'phone', 'image','email','location'
     ];
      // Campos para asignación masiva.
      protected $allowIncluded = ['emprendedors']; // Relación permitida para incluir.
@@ -23,7 +23,7 @@ class investor extends Model
 
 
     
-    public function usuarios_invercionistas(){
+    public function entrepreneursLists(){
         return $this->hasMany(entrepreneursLists::class);
     }
 
@@ -35,10 +35,7 @@ class investor extends Model
     //     return $this->hasMany(Usuario_inversionista::class);
     // }
 
-    public function crear_resenas(){
-        return $this->hasMany(Crear_resenas::class);
-    }
-
+   
     public function inversionistas(){
         return $this->belongsToMany(investor::class);
     }

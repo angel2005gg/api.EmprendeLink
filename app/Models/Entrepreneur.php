@@ -37,8 +37,13 @@ class Entrepreneur extends Model
     /**
      * An entrepreneur can have many published projects.
      */
-    public function publishedProjects()
+    public function publishEntrepreneurships()
     {
         return $this->hasMany(publishEntrepreneurships::class);
     }
+
+
+
+
+    
 }
