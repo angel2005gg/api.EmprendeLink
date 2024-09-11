@@ -16,6 +16,7 @@ class EntrepreneurListController extends RoutingController
     public function index()
     {
         $entrepreneurLists = entrepreneursList::all();
+        $entrepreneurLists = entrepreneursList::included()->get();
 
         return response()->json($entrepreneurLists);
     }
@@ -46,16 +47,15 @@ class EntrepreneurListController extends RoutingController
      */
     public function show($id)
     {
-        $entrepreneurList = entrepreneursList::findOrFail($id);
-
-        return response()->json($entrepreneurList);
+        $publicarEmprendimiento = entrepreneursList::included()->findOrFail($id);
+        return response()->json($publicarEmprendimiento);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\entrepreneursLists  $entrepreneurList
+     * @param  \App\Models\entrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, entrepreneursList $entrepreneurList)
