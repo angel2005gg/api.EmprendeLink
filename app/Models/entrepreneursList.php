@@ -13,7 +13,7 @@ class entrepreneursList extends Model
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
 
-    protected $allowIncluded = ['investorinvestors','entrepreneurs'];
+    protected $allowIncluded = ['investors','entrepreneurs'];
 
 
     public function investors(){
