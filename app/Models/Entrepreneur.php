@@ -31,14 +31,19 @@ class Entrepreneur extends Model
      */
     public function investors()
     {
-        return $this->belongsToMany(Investor::class);
+        return $this->belongsToMany(investor::class);
     }
 
     /**
      * An entrepreneur can have many published projects.
      */
-    public function publishedProjects()
+    public function publishEntrepreneurships()
     {
-        return $this->hasMany(PublishedProject::class);
+        return $this->hasMany(publishEntrepreneurships::class);
     }
+
+
+
+
+    
 }

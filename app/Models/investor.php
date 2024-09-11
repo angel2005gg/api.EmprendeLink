@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class Inversionista extends Model
+class investor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'lastname', 'Nacimiento', 'telefono',
-        'contraseña', 'correo', 'ubicacion'
+        'name', 'lastname', 'birth_date','investment_number', 'password',
+        'document', 'phone', 'image','email','location'
     ];
      // Campos para asignación masiva.
      protected $allowIncluded = ['emprendedors']; // Relación permitida para incluir.
@@ -23,8 +23,8 @@ class Inversionista extends Model
 
 
     
-    public function usuarios_invercionistas(){
-        return $this->hasMany(usuarios_invercionistas::class);
+    public function entrepreneursLists(){
+        return $this->hasMany(entrepreneursLists::class);
     }
 
     public function resenas(){
@@ -35,12 +35,9 @@ class Inversionista extends Model
     //     return $this->hasMany(Usuario_inversionista::class);
     // }
 
-    public function crear_resenas(){
-        return $this->hasMany(Crear_resenas::class);
-    }
-
+   
     public function inversionistas(){
-        return $this->belongsToMany(Inversionista::class);
+        return $this->belongsToMany(investor::class);
     }
 
 

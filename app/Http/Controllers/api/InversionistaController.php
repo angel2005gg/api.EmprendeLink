@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inversionista;
+use App\Models\investor;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
@@ -11,7 +12,7 @@ class InversionistaController extends RoutingController
 {
     public function index()
     {
-        $inversionistas = Inversionista::all(); 
+        $inversionistas = investor::all(); 
         // Puedes usar filtros, ordenamientos, etc. como se muestra en los ejemplos comentados:
         // $inversionistas = Inversionista::included()->get();
         // $inversionistas = Inversionista::included()->filter();
@@ -38,7 +39,7 @@ class InversionistaController extends RoutingController
             'ubicacion' => 'required|max:255',
         ]);
 
-        $inversionista = Inversionista::create($request->all());
+        $inversionista = investor::create($request->all());
         return response()->json($inversionista);
     }
 
@@ -48,17 +49,17 @@ class InversionistaController extends RoutingController
         // $inversionista = Inversionista::with(['relacion1', 'relacion2'])->findOrFail($id);
         // $inversionista = Inversionista::included()->findOrFail($id);
         
-        $inversionista = Inversionista::findOrFail($id);
+        $inversionista = investor::findOrFail($id);
         return response()->json($inversionista);
         // Ejemplo de ruta: http://api.ejemplo.test/v1/inversionistas/1/?included=relacion1,relacion2
     }
 
-    public function edit(Inversionista $inversionista)
+    public function edit(investor $inversionista)
     {
         return view('Inversionista.edit', compact('inversionista'));
     }
 
-    public function update(Request $request, Inversionista $inversionista)
+    public function update(Request $request, investor $inversionista)
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -74,7 +75,7 @@ class InversionistaController extends RoutingController
         return response()->json($inversionista);
     }
 
-    public function destroy(Inversionista $inversionista)
+    public function destroy(investor $inversionista)
     {
         $inversionista->delete();
         return response()->json($inversionista);

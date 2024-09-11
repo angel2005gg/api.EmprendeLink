@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\EntrepreneurList;
+use App\Models\entrepreneursList;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
@@ -10,12 +10,13 @@ class EntrepreneurListController extends RoutingController
 {
     /**
      * Display a listing of the resource.
-     *
+     *entrepreneursLists
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneurList::all();
+        $entrepreneurLists = entrepreneursList::all();
+        $entrepreneurLists = entrepreneursList::included()->get();
 
         return response()->json($entrepreneurLists);
     }
@@ -29,11 +30,11 @@ class EntrepreneurListController extends RoutingController
     public function store(Request $request)
     {
         $request->validate([
-            'entrepreneur_id' => 'required|exists:entrepreneurs,id',
-            'investor_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList = EntrepreneurList::create($request->all());
+        $entrepreneurList = entrepreneursList::create($request->all());
 
         return response()->json($entrepreneurList);
     }
@@ -46,23 +47,22 @@ class EntrepreneurListController extends RoutingController
      */
     public function show($id)
     {
-        $entrepreneurList = EntrepreneurList::findOrFail($id);
-
-        return response()->json($entrepreneurList);
+        $publicarEmprendimiento = entrepreneursList::included()->findOrFail($id);
+        return response()->json($publicarEmprendimiento);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EntrepreneurList  $entrepreneurList
+     * @param  \App\Models\entrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EntrepreneurList $entrepreneurList)
+    public function update(Request $request, entrepreneursList $entrepreneurList)
     {
         $request->validate([
-            'entrepreneur_id' => 'required|exists:entrepreneurs,id',
-            'investor_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
 
         $entrepreneurList->update($request->all());
@@ -73,10 +73,10 @@ class EntrepreneurListController extends RoutingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EntrepreneurList  $entrepreneurList
+     * @param  \App\Models\entrepreneursLists  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EntrepreneurList $entrepreneurList)
+    public function destroy(entrepreneursList $entrepreneurList)
     {
         $entrepreneurList->delete();
 

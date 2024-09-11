@@ -13,27 +13,26 @@ return new class extends Migration
     {
         Schema::create('entrepreneurships', function (Blueprint $table) {
             $table->id();
-            $table->string('entrepreneurship_name');
-            $table->string('description');
-            $table->string('specifications');
-            $table->string('category');
+            
+            $table->integer('number');
 
             $table->unsignedBigInteger('entrepreneur_id')->nullable();
             $table->foreign('entrepreneur_id')
                   ->references('id')
                   ->on('entrepreneurs')->onDelete('cascade');
 
-            $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
-            $table->foreign('publish_Entrepreneurships_id')
-                  ->references('id')
-                  ->on('publish_Entrepreneurships')->onDelete('cascade');
-
             $table->unsignedBigInteger('investor_id')->nullable();
             $table->foreign('investor_id')
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
 
+                  $table->unsignedBigInteger('publishEntrepreneurships_id')->nullable();
+                  $table->foreign('publishEntrepreneurships_id')
+                        ->references('id')
+                        ->on('publishEntrepreneurships')->onDelete('cascade');
+
             $table->timestamps();
+            
         });
     }
 
