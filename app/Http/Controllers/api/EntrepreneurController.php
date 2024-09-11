@@ -17,7 +17,6 @@ class EntrepreneurController extends RoutingController
     public function index()
     {
         $entrepreneurs = Entrepreneur::all();
-        //$entrepreneurs = Entrepreneur::included()->get();
         return response()->json($entrepreneurs);
     }
 
@@ -57,7 +56,7 @@ class EntrepreneurController extends RoutingController
     public function show($id) 
     {
         // Find an entrepreneur by ID
-        $entrepreneur = Entrepreneur::included()->findOrFail($id);
+        $entrepreneur = Entrepreneur::findOrFail($id);
         return response()->json($entrepreneur);
     }
 
