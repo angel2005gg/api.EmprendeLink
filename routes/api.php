@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\EntrepreneurController;
 use App\Http\Controllers\Api\EntrepreneurListController;
 use App\Http\Controllers\Api\MyentrepreneurshipController;
 use App\Http\Controllers\Api\EntrepreneurshipController;
+
+use App\Http\Controllers\Api\InvestorController;
 use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
 
 
@@ -28,11 +30,11 @@ use Illuminate\Support\Facades\Route;
     //     return 'prueba 1234';
     // });
 
-    // Route::get('inversionistas', [InversionistaController::class, 'index'])->name('api.inversionistas.index');
-    // Route::post('inversionistas', [InversionistaController::class, 'store'])->name('api.inversionistas.store');
-    // Route::get('inversionistas/{inversionista}', [InversionistaController::class, 'show'])->name('api.inversionistas.show');
-    // Route::put('inversionistas/{inversionista}', [InversionistaController::class, 'update'])->name('api.inversionistas.update');
-    // Route::delete('inversionistas/{inversionista}', [InversionistaController::class, 'destroy'])->name('api.inversionistas.destroy');
+    Route::get('investors', [InvestorController::class, 'index'])->name('api.investors.index');
+Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
+Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
+Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
+Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
 
 
     Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
