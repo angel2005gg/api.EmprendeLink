@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ConnectionController;
-use App\Http\Controllers\Api\CreateReviewsController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\EntrepreneurController;
 use App\Http\Controllers\Api\EntrepreneurListController;
 use App\Http\Controllers\Api\MyentrepreneurshipController;
@@ -96,11 +96,11 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::prefix(prefix: 'review')->group(function(){
-        Route::post('/create',[CreateReviewsController::class,'store']);
-        Route::get('/listar',[CreateReviewsController::class,'index']);
-        Route::get('/show/{id}',[CreateReviewsController::class,'show']);
-        Route::put('/update/{create_review}',[CreateReviewsController::class,'update']);
-        Route::delete('/delete/{create_review}',[CreateReviewsController::class,'destroy']);
+        Route::post('/create',[ReviewController::class,'store']);
+        Route::get('/listar',[ReviewController::class,'index']);
+        Route::get('/show/{id}',[ReviewController::class,'show']);
+        Route::put('/update/{create_review}',[ReviewController::class,'update']);
+        Route::delete('/delete/{create_review}',[ReviewController::class,'destroy']);
     });
 
 
