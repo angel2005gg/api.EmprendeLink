@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\Api\ConnectionController;
-use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\CreateReviewsController;
 use App\Http\Controllers\Api\EntrepreneurController;
 use App\Http\Controllers\Api\EntrepreneurListController;
+use App\Http\Controllers\Api\MyentrepreneurshipController;
+use App\Http\Controllers\Api\EntrepreneurshipController;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,11 +56,11 @@ use Illuminate\Support\Facades\Route;
     // Route::delete('inversionistas/{inversionista}', [InversionistaController::class, 'destroy'])->name('api.inversionistas.destroy');
 
 
-    // Route::get('publicare', [PublicarEmprendimientoController::class,'index'])->name('api.publicar__emprendimientos.index');
-    // Route::post('publicare', [PublicarEmprendimientoController::class,'store'])->name('api.publicar__emprendimientos.store');
-    // Route::get('publicare/{publicar_emprendimiento}', [PublicarEmprendimientoController::class,'show'])->name('api.publicar__emprendimientos.show');
-    // Route::put('publicare/{publicar_emprendimiento}', [PublicarEmprendimientoController::class,'update'])->name('api.publicar__emprendimientos.update');
-    // Route::delete('publicare/{publicar_emprendimiento}', [PublicarEmprendimientoController::class,'destroy'])->name('api.publicar__emprendimientos.delete');
+    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
+    Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
+    Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
+    Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
+    Route::delete('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'destroy'])->name('api.publish_Entrepreneurships.delete');
 
 
     Route::get('review', [ReviewController::class,'index'])->name('api.reviews.index');
@@ -92,11 +96,11 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::prefix(prefix: 'review')->group(function(){
-        Route::post('/create',[ReviewController::class,'store']);
-        Route::get('/listar',[ReviewController::class,'index']);
-        Route::get('/show/{id}',[ReviewController::class,'show']);
-        Route::put('/update/{review}',[ReviewController::class,'api.reviews.update']);
-        Route::delete('/delete/{review}',[ReviewController::class,'destroy']);
+        Route::post('/create',[CreateReviewsController::class,'store']);
+        Route::get('/listar',[CreateReviewsController::class,'index']);
+        Route::get('/show/{id}',[CreateReviewsController::class,'show']);
+        Route::put('/update/{create_review}',[CreateReviewsController::class,'update']);
+        Route::delete('/delete/{create_review}',[CreateReviewsController::class,'destroy']);
     });
 
 
@@ -107,3 +111,21 @@ use Illuminate\Support\Facades\Route;
         Route::put('/update/{Connection}',[ConnectionController::class,'update']);
         Route::delete('/delete/{Connection}',[ConnectionController::class,'destroy']);
     });
+
+
+
+// Rutas para Myentrepreneurship
+Route::get('myentrepreneurships', [MyentrepreneurshipController::class, 'index'])->name('api.myentrepreneurships.index');
+Route::post('myentrepreneurships', [MyentrepreneurshipController::class, 'store'])->name('api.myentrepreneurships.store');
+Route::get('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'show'])->name('api.myentrepreneurships.show');
+Route::put('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'update'])->name('api.myentrepreneurships.update');
+Route::delete('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'destroy'])->name('api.myentrepreneurships.delete');
+
+
+// Rutas para Entrepreneurship
+Route::get('entrepreneurships', [EntrepreneurshipController::class, 'index'])->name('api.entrepreneurships.index');
+Route::post('entrepreneurships', [EntrepreneurshipController::class, 'store'])->name('api.entrepreneurships.store');
+Route::get('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'show'])->name('api.entrepreneurships.show');
+Route::put('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'update'])->name('api.entrepreneurships.update');
+Route::delete('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'destroy'])->name('api.entrepreneurships.delete');
+
