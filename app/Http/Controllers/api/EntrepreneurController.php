@@ -16,8 +16,8 @@ class EntrepreneurController extends RoutingController
      */
     public function index()
     {
-        // Retrieve all entrepreneurs
-        $entrepreneurs = Entrepreneur::included()->get();
+        $entrepreneurs = Entrepreneur::all();
+        //$entrepreneurs = Entrepreneur::included()->get();
         return response()->json($entrepreneurs);
     }
 

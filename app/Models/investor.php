@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class Inversionista extends Model
+class investor extends Model
 {
     use HasFactory;
 
@@ -24,7 +24,7 @@ class Inversionista extends Model
 
     
     public function usuarios_invercionistas(){
-        return $this->hasMany(usuarios_invercionistas::class);
+        return $this->hasMany(entrepreneursLists::class);
     }
 
     public function resenas(){
@@ -40,7 +40,7 @@ class Inversionista extends Model
     }
 
     public function inversionistas(){
-        return $this->belongsToMany(Inversionista::class);
+        return $this->belongsToMany(investor::class);
     }
 
 

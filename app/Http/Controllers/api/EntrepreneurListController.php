@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\EntrepreneurList;
+use App\Models\entrepreneursLists;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as RoutingController;
 
@@ -15,7 +15,7 @@ class EntrepreneurListController extends RoutingController
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneurList::all();
+        $entrepreneurLists = entrepreneursLists::all();
 
         return response()->json($entrepreneurLists);
     }
@@ -33,7 +33,7 @@ class EntrepreneurListController extends RoutingController
             'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList = EntrepreneurList::create($request->all());
+        $entrepreneurList = entrepreneursLists::create($request->all());
 
         return response()->json($entrepreneurList);
     }
@@ -46,7 +46,7 @@ class EntrepreneurListController extends RoutingController
      */
     public function show($id)
     {
-        $entrepreneurList = EntrepreneurList::findOrFail($id);
+        $entrepreneurList = entrepreneursLists::findOrFail($id);
 
         return response()->json($entrepreneurList);
     }
@@ -55,10 +55,10 @@ class EntrepreneurListController extends RoutingController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EntrepreneurList  $entrepreneurList
+     * @param  \App\Models\entrepreneursLists  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EntrepreneurList $entrepreneurList)
+    public function update(Request $request, entrepreneursLists $entrepreneurList)
     {
         $request->validate([
             'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
@@ -73,10 +73,10 @@ class EntrepreneurListController extends RoutingController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EntrepreneurList  $entrepreneurList
+     * @param  \App\Models\entrepreneursLists  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EntrepreneurList $entrepreneurList)
+    public function destroy(entrepreneursLists $entrepreneurList)
     {
         $entrepreneurList->delete();
 

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\ConnectionController;
 use App\Http\Controllers\Api\CreateReviewsController;
+use App\Http\Controllers\Api\EntrepreneurController;
+use App\Http\Controllers\Api\EntrepreneurListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-
 
     // Route::get('/prueba', function () {
     //     return 'prueba 1234';
@@ -71,24 +71,24 @@ use Illuminate\Support\Facades\Route;
     // Route::put('cear_resena/{cear_resena}', [CrearResenasController::class,'update'])->name('api.crear_resenas.update');
     // Route::delete('cear_resena/{cear_resena}', [CrearResenasController::class,'destroy'])->name('api.crear_resenas.delete');
 
-    
- // Route::get('Entrepreneurs', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
-// Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
-// Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
-// Route::put('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
-// Route::delete('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
+        
+    Route::get('Entrepreneurs', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
+    Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
+    Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
+    Route::put('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
+    Route::delete('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
 
-// Route::get('EntrepreneurList', [EntrepreneurListController::class, 'index'])->name('api.EntrepreneurList.index');
-// Route::post('EntrepreneurList', [EntrepreneurListController::class, 'store'])->name('api.EntrepreneurList.store');
-// Route::get('EntrepreneurList/{entrepreneurList}', [EntrepreneurListController::class, 'show'])->name('api.EntrepreneurList.show');
-// Route::put('EntrepreneurList/{entrepreneurList}', [EntrepreneurListController::class, 'update'])->name('api.EntrepreneurList.update');
-// Route::delete('EntrepreneurList/{entrepreneurList}', [EntrepreneurListController::class, 'destroy'])->name('api.EntrepreneurList.delete');
+    Route::get('entrepreneurLists', [EntrepreneurListController::class, 'index'])->name('api.entrepreneurLists.index');
+    Route::post('entrepreneurLists', [EntrepreneurListController::class, 'store'])->name('api.entrepreneurLists.store');
+    Route::get('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'show'])->name('api.entrepreneurLists.show');
+    Route::put('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'update'])->name('api.entrepreneurLists.update');
+    Route::delete('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'destroy'])->name('api.entrepreneurLists.delete');
 
-// Route::get('connections', [ConnectionController::class, 'index'])->name('api.connections.index');
-// Route::post('connections', [ConnectionController::class, 'store'])->name('api.connections.store');
-// Route::get('connections/{connection}', [ConnectionController::class, 'show'])->name('api.connections.show');
-// Route::put('connections/{connection}', [ConnectionController::class, 'update'])->name('api.connections.update');
-// Route::delete('connections/{connection}', [ConnectionController::class, 'destroy'])->name('api.connections.destroy');
+    Route::get('connections', [ConnectionController::class, 'index'])->name('api.connections.index');
+    Route::post('connections', [ConnectionController::class, 'store'])->name('api.connections.store');
+    Route::get('connections/{connection}', [ConnectionController::class, 'show'])->name('api.connections.show');
+    Route::put('connections/{connection}', [ConnectionController::class, 'update'])->name('api.connections.update');
+    Route::delete('connections/{connection}', [ConnectionController::class, 'destroy'])->name('api.connections.destroy');
 
 
     Route::prefix(prefix: 'review')->group(function(){

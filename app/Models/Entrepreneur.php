@@ -31,7 +31,7 @@ class Entrepreneur extends Model
      */
     public function investors()
     {
-        return $this->belongsToMany(Investor::class);
+        return $this->belongsToMany(investor::class);
     }
 
     /**
@@ -39,6 +39,6 @@ class Entrepreneur extends Model
      */
     public function publishedProjects()
     {
-        return $this->hasMany(PublishedProject::class);
+        return $this->hasMany(publishEntrepreneurships::class);
     }
 }
