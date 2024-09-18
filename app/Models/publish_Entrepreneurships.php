@@ -12,8 +12,8 @@ class publish_Entrepreneurships extends Model
     use HasFactory;
     protected $table = "publish_Entrepreneurships" ;
 
-    public function emprendimientos (){
-        return $this->hasMany(emprendimiento::class);
+    public function Entrepreneurships(){
+        return $this->hasMany(Entrepreneurship::class);
     }
 
     public function Entrepreneurs(){
