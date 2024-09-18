@@ -13,7 +13,7 @@ class entrepreneursList extends Model
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
 
-    protected $allowIncluded = ['investorinvestors','entrepreneurs'];
+    protected $allowIncluded = ['investors','entrepreneurs'];
 
 
     public function investors(){
@@ -23,6 +23,8 @@ class entrepreneursList extends Model
     public function entrepreneurs(){
         return $this->belongsTo(Entrepreneur::class);
     }
+
+        // Scope para incluir relaciones
 
     public function scopeIncluded(Builder $query)
     {
@@ -51,10 +53,61 @@ class entrepreneursList extends Model
          //se ejecuta el query con lo que tiene $relations en ultimas es el valor en la url de included
 
         //http://api.EmpredeLink/api/categories?included=posts
+    }
 
+    public function scopeSort(Builder $query)
+    {
+        if (empty($this->allowSort) || empty(request('sort'))) {
+            return;
+        }
 
+        $sortFields = explode(',', request('sort'));
+        $allowSort = collect($this->allowSort);
+
+        foreach ($sortFields as $sortField) {
+            $direction = 'asc';
+
+            if (substr($sortField, 0, 1) == '-') {
+                $direction = 'desc';
+                $sortField = substr($sortField, 1);
+            }
+
+            if ($allowSort->contains($sortField)) {
+                $query->orderBy($sortField, $direction);
+            }
+        }
+    }
+
+    // Scope para filtrar resultados
+    public function scopeFilter(Builder $query)
+    {
+        if (empty($this->allowFilter) || empty(request('filter'))) {
+            return;
+        }
+
+        $filters = request('filter');
+        $allowFilter = collect($this->allowFilter);
+
+        foreach ($filters as $filter => $value) {
+            if ($allowFilter->contains($filter)) {
+                $query->where($filter, 'LIKE', '%' . $value . '%');
+            }
+        }
     }
 
 
+    // Scope para obtener todos los registros o paginarlos
+    public function scopeGetOrPaginate(Builder $query)
+    {
+        if (request('perPage')) {
+            $perPage = intval(request('perPage'));
+
+            if ($perPage) {
+                return $query->paginate($perPage);
+            }
+        }
+
+        return $query->get();
+    }
     
 }

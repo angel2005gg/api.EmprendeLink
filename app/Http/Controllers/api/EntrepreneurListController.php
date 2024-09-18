@@ -47,8 +47,8 @@ class EntrepreneurListController extends RoutingController
      */
     public function show($id)
     {
-        $publicarEmprendimiento = entrepreneursList::included()->findOrFail($id);
-        return response()->json($publicarEmprendimiento);
+        $entrepreneurList = entrepreneursList::included()->findOrFail($id);
+        return response()->json($entrepreneurList);
     }
 
     /**

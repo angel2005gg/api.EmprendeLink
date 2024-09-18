@@ -10,6 +10,10 @@ use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
 
 
 
+use App\Http\Controllers\Api\InvestorController;
+use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,34 +33,11 @@ use Illuminate\Support\Facades\Route;
         return 'prueba 12kk';
     });
 
-
-    // Route::get('usuarios_invercionistas', [UsuariosInvercionistasController::class,'index'])->name('api.usuarios_invercionistas.index');
-    // Route::post('usuarios_invercionistas', [UsuariosInvercionistasController::class,'store'])->name('api.usuarios_invercionistas.store');
-    // Route::get('usuarios_invercionistas/{usuarios_invercionistas}', [UsuariosInvercionistasController::class,'show'])->name('api.usuarios_invercionistas.show');
-    // Route::put('usuarios_invercionistas/{usuarios_invercionistas}', [UsuariosInvercionistasController::class,'update'])->name('api.usuarios_invercionistas.update');
-    // Route::delete('usuarios_invercionistas/{usuarios_invercionistas}', [UsuariosInvercionistasController::class,'destroy'])->name('api.usuarios_invercionistas.delete');
-
-    // Route::get('emprendimientos', [EmprendimientoController::class, 'index'])->name('api.emprendimientos.index');
-    // Route::post('emprendimientos', [EmprendimientoController::class, 'store'])->name('api.emprendimientos.store');
-    // Route::get('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'show'])->name('api.emprendimientos.show');
-    // Route::put('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'update'])->name('api.emprendimientos.update');
-    // Route::delete('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'destroy'])->name('api.emprendimientos.destroy');
-
-    // Route::get('/prueba', function () {
-    //     return 'prueba 1234';
-    // });
-
-    // Route::get('emprendimientos', [EmprendimientoController::class, 'index'])->name('api.emprendimientos.index');
-    // Route::post('emprendimientos', [EmprendimientoController::class, 'store'])->name('api.emprendimientos.store');
-    // Route::get('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'show'])->name('api.emprendimientos.show');
-    // Route::put('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'update'])->name('api.emprendimientos.update');
-    // Route::delete('emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'destroy'])->name('api.emprendimientos.destroy');
-
-    // Route::get('inversionistas', [InversionistaController::class, 'index'])->name('api.inversionistas.index');
-    // Route::post('inversionistas', [InversionistaController::class, 'store'])->name('api.inversionistas.store');
-    // Route::get('inversionistas/{inversionista}', [InversionistaController::class, 'show'])->name('api.inversionistas.show');
-    // Route::put('inversionistas/{inversionista}', [InversionistaController::class, 'update'])->name('api.inversionistas.update');
-    // Route::delete('inversionistas/{inversionista}', [InversionistaController::class, 'destroy'])->name('api.inversionistas.destroy');
+    Route::get('investors', [InvestorController::class, 'index'])->name('api.investors.index');
+Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
+Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
+Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
+Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
 
 
     Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
@@ -71,14 +52,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('review/{review}', [ReviewController::class,'show'])->name('api.reviews.show');
     Route::put('review/{review}', [ReviewController::class,'update'])->name('api.reviews.update');
     Route::delete('review/{review}', [ReviewController::class,'destroy'])->name('api.reviews.delete');
-
-    // Route::get('cear_resena', [CrearResenasController::class,'index'])->name('api.crear_resenas.index');
-    // Route::post('cear_resena', [CrearResenasController::class,'store'])->name('api.crear_resenas.store');
-    // Route::get('cear_resena/{cear_resena}', [CrearResenasController::class,'show'])->name('api.crear_resenas.show');
-    // Route::put('cear_resena/{cear_resena}', [CrearResenasController::class,'update'])->name('api.crear_resenas.update');
-    // Route::delete('cear_resena/{cear_resena}', [CrearResenasController::class,'destroy'])->name('api.crear_resenas.delete');
-
-        
+  
     Route::get('Entrepreneurs', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
     Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
     Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
