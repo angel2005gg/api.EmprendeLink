@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('Myentrepreneurships', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name');
+            $table->string('description'); 
+            $table->integer('especifications');
+            $table->string('category');
+        
+
             $table->unsignedBigInteger('entrepreneur_id')->nullable();
             $table->foreign('entrepreneur_id')
                   ->references('id')
