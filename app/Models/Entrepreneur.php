@@ -43,6 +43,11 @@ class Entrepreneur extends Model
         return $this->hasMany(publish_Entrepreneurships::class);
     }
 
+    public function Entrepreneurships()
+    {
+        return $this->hasMany(Entrepreneurship::class);
+    }
+
     public function scopeIncluded(Builder $query)
     {
 

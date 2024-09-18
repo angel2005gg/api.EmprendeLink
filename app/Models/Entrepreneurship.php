@@ -12,27 +12,27 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
 
     // Actualizado $fillable en base a los campos proporcionados en la migración
     protected $fillable = [
-        'number', 'entrepreneur_id', 'investor_id'
+        'number', 'entrepreneur_id', 'investor_id','publish_Entrepreneurships_id'
     ];
 
     protected $allowIncluded = [
         'entrepreneur', 'investor', 'publish_Entrepreneurships',
     ];
 
-    protected $allowFilter = ['id', 'number', 'entrepreneur_id', 'investor_id'];
+    protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'];
 
-    protected $allowSort = ['id', 'number', 'entrepreneur_id', 'investor_id'];
+    protected $allowSort = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'];
 
     // Relaciones
 
-    public function entrepreneurs() // Método de relación para Entrepreneur
+    public function Entrepreneur() // Método de relación para Entrepreneur
     {
         return $this->belongsTo(Entrepreneur::class);
     }
 
-    public function publishEntrepreneurships() // Método de relación para PublishEntrepreneurships
+    public function publish_Entrepreneurships() // Método de relación para PublishEntrepreneurships
     {
-        return $this->hasMany(Publish_Entrepreneurships::class);
+        return $this->belongsTo(Publish_Entrepreneurships::class);
     }
 
     public function investor() // Método de relación para Investor
