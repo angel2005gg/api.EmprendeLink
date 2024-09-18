@@ -26,10 +26,10 @@ return new class extends Migration
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
 
-                  $table->unsignedBigInteger('publishEntrepreneurships_id')->nullable();
-                  $table->foreign('publishEntrepreneurships_id')
+                  $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
+                  $table->foreign('publish_Entrepreneurships_id')
                         ->references('id')
-                        ->on('publishEntrepreneurships')->onDelete('cascade');
+                        ->on('publish_Entrepreneurships')->onDelete('cascade');
 
             $table->timestamps();
             

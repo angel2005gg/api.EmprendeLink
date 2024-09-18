@@ -16,7 +16,7 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
     ];
 
     protected $allowIncluded = [
-        'entrepreneur', 'investor', 'publishEntrepreneurships',
+        'entrepreneur', 'investor', 'publish_Entrepreneurships',
     ];
 
     protected $allowFilter = ['id', 'number', 'entrepreneur_id', 'investor_id'];
@@ -25,14 +25,14 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
 
     // Relaciones
 
-    public function entrepreneur() // Método de relación para Entrepreneur
+    public function entrepreneurs() // Método de relación para Entrepreneur
     {
         return $this->belongsTo(Entrepreneur::class);
     }
 
     public function publishEntrepreneurships() // Método de relación para PublishEntrepreneurships
     {
-        return $this->belongsTo(PublishEntrepreneurships::class);
+        return $this->hasMany(Publish_Entrepreneurships::class);
     }
 
     public function investor() // Método de relación para Investor

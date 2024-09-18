@@ -25,9 +25,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    // Route::get('/prueba', function () {
-    //     return 'prueba 1234';
-    // });
+    Route::get('/prueba', function () {
+        return 'prueba 12kk';
+    });
 
 
     // Route::get('usuarios_invercionistas', [UsuariosInvercionistasController::class,'index'])->name('api.usuarios_invercionistas.index');
