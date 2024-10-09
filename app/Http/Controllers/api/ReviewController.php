@@ -35,7 +35,9 @@ class ReviewController extends RoutingController
         $request->validate([
             'qualification' => 'required|max:255',
             'comment' => 'required|max:255',
-
+            'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
+            'Entrepreneurships_id' => 'nullable|exists:Entrepreneurships,id',
+            'investor_id' => 'nullable|exists:investors,id',
 
         ]);
 
@@ -75,6 +77,9 @@ class ReviewController extends RoutingController
         $request->validate([
             'qualification' => 'required|max:255',
             'comment' => 'required|max:255' . $review->id,
+            'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
+            'Entrepreneurships_id' => 'nullable|exists:Entrepreneurships,id',
+            'investor_id' => 'nullable|exists:investors,id',
 
         ]);
 
