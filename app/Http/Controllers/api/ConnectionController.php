@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Connection;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
 
-class ConnectionController extends RoutingController
+class ConnectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ConnectionController extends RoutingController
      */
     public function index()
     {
-        $connections = Connection::all();
-        return response()->json($connections);
+        $connection = Connection::all();
+        return response()->json($connection);
     }
 
     /**
@@ -29,8 +29,8 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',  // Corregido
-            'investors_id' => 'required|exists:investors,id',
+            // 'entrepreneurs_id' => 'required|exists:entrepreneurs,id',  // Corregido
+            // 'investors_id' => 'required|exists:investors,id',
         ]);
         
 
@@ -45,10 +45,10 @@ class ConnectionController extends RoutingController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_connection)
+    public function show($id)
     {
 
-        $connection = Connection::findOrFail($id_connection);
+        $connection = Connection::findOrFail($id);
         return response()->json($connection);
     }
 
@@ -63,8 +63,8 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
-            'investors_id' => 'required|exists:investors,id',
+            // 'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            // 'investors_id' => 'required|exists:investors,id',
         ]);
 
         $connection->update($request->all());
