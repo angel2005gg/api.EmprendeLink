@@ -14,6 +14,12 @@ return new class extends Migration
         Schema::create('Myentrepreneurships', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name');
+            $table->string('description'); 
+            $table->String('especifications');
+            $table->string('category');
+        
+
             $table->unsignedBigInteger('entrepreneur_id')->nullable();
             $table->foreign('entrepreneur_id')
                   ->references('id')
@@ -28,6 +34,11 @@ return new class extends Migration
             $table->foreign('investor_id')
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
+
+            $table->unsignedBigInteger('Review_id')->nullable();
+            $table->foreign('Review_id')
+                        ->references('id')
+                        ->on('reviews')->onDelete('cascade');      
 
             $table->timestamps();
         });

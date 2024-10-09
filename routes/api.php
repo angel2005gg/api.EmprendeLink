@@ -65,11 +65,11 @@ Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->n
     Route::put('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'update'])->name('api.entrepreneurLists.update');
     Route::delete('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'destroy'])->name('api.entrepreneurLists.delete');
 
-    Route::get('connections', [ConnectionController::class, 'index'])->name('api.connections.index');
-    Route::post('connections', [ConnectionController::class, 'store'])->name('api.connections.store');
-    Route::get('connections/{connection}', [ConnectionController::class, 'show'])->name('api.connections.show');
-    Route::put('connection/{connection}', [ConnectionController::class,'update'])->name('api.connections.update');
-    Route::delete('connection/{connection}', [ConnectionController::class,'destroy'])->name('api.connections.delete');
+    Route::get('connection', [ConnectionController::class, 'index'])->name('api.connection.index');
+    Route::post('connection', [ConnectionController::class, 'store'])->name('api.connection.store');
+    Route::get('connection/{connection}', [ConnectionController::class, 'show'])->name('api.connection.show');
+    Route::put('connection/{connection}', [ConnectionController::class,'update'])->name('api.connection.update');
+    Route::delete('connection/{connection}', [ConnectionController::class,'destroy'])->name('api.connection.delete');
 
 
     Route::prefix(prefix: 'review')->group(function(){
@@ -81,13 +81,22 @@ Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->n
     });
 
 
-    Route::prefix('connection')->group(function(){
-        Route::post('/create',[ConnectionController::class,'store']);
-        Route::get('/listar',[ConnectionController::class,'index']);
-        Route::get('/show/{id}',[ConnectionController::class,'show']);
-        Route::put('/update/{Connection}',[ConnectionController::class,'update']);
-        Route::delete('/delete/{Connection}',[ConnectionController::class,'destroy']);
-    });
+
+    // Route::prefix(prefix: 'connection')->group(function(){
+    //     Route::post('/create',[ConnectionController::class,'store']);
+    //     Route::get('/listar',[ConnectionController::class,'index']);
+    //     Route::get('/show/{id}',[ConnectionController::class,'show']);
+    //     Route::put('/update/{connection}',[ConnectionController::class,'update']);
+    //     Route::delete('/delete/{connection}',[ConnectionController::class,'destroy']);
+    // });
+
+    
+
+
+
+
+
+
 
 
 

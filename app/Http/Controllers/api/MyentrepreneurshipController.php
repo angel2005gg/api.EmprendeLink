@@ -24,8 +24,9 @@ class MyentrepreneurshipController extends RoutingController
     {
         $request->validate([
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
-            'publishEntrepreneurships_id' => 'nullable|exists:publishEntrepreneurships,id',
+           'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'Review_id' => 'nullable|exists:Review,id',
         ]);
 
         $myentrepreneurship = Myentrepreneurship::create($request->all());
@@ -36,6 +37,8 @@ class MyentrepreneurshipController extends RoutingController
     {
         $myentrepreneurship = Myentrepreneurship::included()->findOrFail($id);
         return response()->json($myentrepreneurship);
+
+        
     }
 
     public function edit(Myentrepreneurship $myentrepreneurship)
@@ -47,8 +50,9 @@ class MyentrepreneurshipController extends RoutingController
     {
         $request->validate([
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
-            'publishEntrepreneurships_id' => 'nullable|exists:publishEntrepreneurships,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'Review_id' => 'nullable|exists:Review,id',
         ]);
 
         $myentrepreneurship->update($request->all());
