@@ -16,7 +16,7 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
     ];
 
     protected $allowIncluded = [
-        'entrepreneur', 'investor', 'publish_Entrepreneurships',
+        'entrepreneur', 'investor', 'publish_Entrepreneurships', 'Review',
     ];
 
     protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'];
@@ -36,6 +36,10 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
     public function investor() // Método de relación para Investor
     {
         return $this->belongsTo(Investor::class);
+    }
+    public function Reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     // Scope para incluir relaciones

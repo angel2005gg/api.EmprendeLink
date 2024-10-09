@@ -14,7 +14,7 @@ class Investor extends Model
         'name', 'lastname', 'birth_date', 'investment_number', 'password',
         'document', 'phone', 'image', 'email', 'location'
     ];
-    protected $allowIncluded = ['emprendedors'];
+    protected $allowIncluded = ['emprendedors', 'Review'];
     protected $allowFilter = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
     protected $allowSort = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
 
@@ -23,14 +23,11 @@ class Investor extends Model
         return $this->hasMany(EntrepreneursList::class);
     }
 
-    public function resenas()
+    
+
+    public function Reviews()
     {
         return $this->hasMany(Review::class);
-    }
-
-    public function inversionistas()
-    {
-        return $this->belongsToMany(Investor::class);
     }
 
     public function scopeIncluded(Builder $query)
