@@ -29,12 +29,10 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
     {
         return $this->belongsTo(Entrepreneur::class);
     }
-
-    public function publish_Entrepreneurships() // Método de relación para PublishEntrepreneurships
+    public function publish_Entrepreneurships()
     {
-        return $this->belongsTo(Publish_Entrepreneurships::class);
+        return $this->belongsTo(Publish_Entrepreneurships::class, 'publish_Entrepreneurships_id');
     }
-
     public function investor() // Método de relación para Investor
     {
         return $this->belongsTo(Investor::class);

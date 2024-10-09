@@ -26,6 +26,7 @@ class EntrepreneurshipController extends RoutingController
             'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
         ]);
 
         $entrepreneurship = Entrepreneurship::create($request->all());
@@ -49,6 +50,7 @@ class EntrepreneurshipController extends RoutingController
             'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
         ]);
 
         $entrepreneurship->update($request->all());

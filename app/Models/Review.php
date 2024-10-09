@@ -13,7 +13,7 @@ class Review extends Model
     protected $fillable = ['qualification', 'comment']; //Campos que se van a asignacion masiva:
 
 
-    protected $allowIncluded = ['emprendedors']; // Relación permitida para incluir.
+    protected $allowIncluded = ['emprendedors','Myentrepreneurship']; // Relación permitida para incluir.
 
     protected $allowFilter = ['id', 'name', 'lastname', 'correo']; // Campos permitidos para filtrar.
     protected $allowSort = ['id', 'name', 'lastname', 'correo']; // Campos permitidos para ordenar.
@@ -22,6 +22,11 @@ class Review extends Model
     public function emprendedors()
     {
         return $this->belongsToMany(Entrepreneur::class);
+    }
+
+    public function Myentrepreneurships()
+    {
+        return $this->hasMany(Myentrepreneurship::class);
     }
 
     // // Scope para incluir relaciones
