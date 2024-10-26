@@ -18,14 +18,14 @@ class Entrepreneur extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'lastname', 
-        'birth_date', 
-        'password', 
-        'phone', 
-        'image', 
-        'email', 
-        'location', 
+        'name',
+        'lastname',
+        'birth_date',
+        'password',
+        'phone',
+        'image',
+        'email',
+        'location',
         'number'
     ];
 
@@ -51,9 +51,7 @@ class Entrepreneur extends Model
     public function Entrepreneurships(): HasMany
     {
         return $this->hasMany(Entrepreneurship::class);
-    } 
-
-
+    }
 
     public function scopeIncluded(Builder $query)
     {
@@ -141,5 +139,5 @@ class Entrepreneur extends Model
 
 
 
-    
+
 }

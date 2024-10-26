@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description'); 
-            $table->integer('especifications');
+            $table->String('especifications');
             $table->string('category');
         
 
@@ -34,6 +34,11 @@ return new class extends Migration
             $table->foreign('investor_id')
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
+
+            $table->unsignedBigInteger('Review_id')->nullable();
+            $table->foreign('Review_id')
+                        ->references('id')
+                        ->on('reviews')->onDelete('cascade');      
 
             $table->timestamps();
         });

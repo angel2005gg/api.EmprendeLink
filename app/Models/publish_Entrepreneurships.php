@@ -28,7 +28,7 @@ class publish_Entrepreneurships extends Model
     //Campos que se van a asignacion masiva:
 
     protected $fillable = ['name','phone_number','email','description','location','url','expiration_date'];
-    protected $allowIncluded = ['entrepreneurs'];//las posibles Querys que se pueden realizar
+    protected $allowIncluded = ['entrepreneurs','Entrepreneurships','Myentrepreneurship'];//las posibles Querys que se pueden realizar
 
     protected $allowFilter = ['id', 'name','phone_number','email','description','location','url','expiration_date'];
 

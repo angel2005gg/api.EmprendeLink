@@ -36,7 +36,8 @@ class investor extends Model
         return $this->belongsToMany(Investor::class);
     }
 
-      // Relación muchos a muchos con el modelo Entrepreneur
+
+
       public function entrepreneurs()
       {
           return $this->belongsToMany(Entrepreneur::class, 'connections', 'investors_id', 'entrepreneurs_id')

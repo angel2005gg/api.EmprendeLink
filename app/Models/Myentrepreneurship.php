@@ -12,16 +12,16 @@ class Myentrepreneurship extends Model
 
     // Campos que se pueden asignar masivamente
     protected $fillable = [
-        'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'
+        'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'
     ];
 
     protected $allowIncluded = [
-        'entrepreneur', 'publish_Entrepreneurships', 'investor',
+        'entrepreneur', 'publish_Entrepreneurships', 'investor', 'Review',
     ];
 
-    protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'];
+    protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'];
 
-    protected $allowSort = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id'];
+    protected $allowSort = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'];
 
     // Relaciones
 
@@ -32,13 +32,31 @@ class Myentrepreneurship extends Model
 
     public function publish_Entrepreneurships()
     {
-        return $this->belongsTo(Publish_Entrepreneurships::class);
+        return $this->belongsTo(Publish_Entrepreneurships::class, 'publish_Entrepreneurships_id');
     }
 
     public function investor()
     {
         return $this->belongsTo(Investor::class);
     }
+
+   public function Review()
+{
+    return $this->belongsTo(Review::class, 'Review_id', 'id');
+}
+
+
+// In Myentrepreneurship model
+// public function publish_Entrepreneurships()
+// {
+//     return $this->belongsTo(Publish_Entrepreneurships::class, 'publish_Entrepreneurships_id', 'id');
+// }
+
+// public function review()
+// {
+//     return $this->belongsTo(Review::class, 'review_id', 'id');
+// }
+
 
     // Scope para incluir relaciones
     public function scopeIncluded(Builder $query)
@@ -113,4 +131,6 @@ class Myentrepreneurship extends Model
 
         return $query->get();
     }
+
+    
 }
