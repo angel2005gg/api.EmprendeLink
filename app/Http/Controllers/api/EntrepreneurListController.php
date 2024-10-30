@@ -17,6 +17,7 @@ class EntrepreneurListController extends RoutingController
     {
         $entrepreneurLists = entrepreneursList::all();
         $entrepreneurLists = entrepreneursList::included()->get();
+        $entrepreneurLists = entrepreneursList::included()->filter()->get();
 
         return response()->json($entrepreneurLists);
     }

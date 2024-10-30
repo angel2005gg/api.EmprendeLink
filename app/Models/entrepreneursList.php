@@ -15,6 +15,9 @@ class entrepreneursList extends Model
 
     protected $allowIncluded = ['investors','entrepreneurs'];
 
+    protected $allowFilter = ['id','investors_id','entrepreneurs_id'];
+
+
 
     public function investors(){
         return $this->belongsTo(investor::class);
