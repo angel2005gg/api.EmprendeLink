@@ -40,7 +40,6 @@ class EntrepreneurController extends RoutingController
             'location' => 'required|max:255',
             'number' => 'required|max:255',
         ]);
-
         // Create a new entrepreneur record
         $entrepreneur = Entrepreneur::create($request->all());
 

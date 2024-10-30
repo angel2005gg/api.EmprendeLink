@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Investor extends Model
+class investor extends Model
 {
     use HasFactory;
 
@@ -14,23 +16,35 @@ class Investor extends Model
         'name', 'lastname', 'birth_date', 'investment_number', 'password',
         'document', 'phone', 'image', 'email', 'location'
     ];
-    protected $allowIncluded = ['emprendedors', 'Review'];
+    protected $allowIncluded = [ 'entrepreneursLists', 'entrepreneurs' ];
     protected $allowFilter = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
     protected $allowSort = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
 
-    public function entrepreneursLists()
+    public function entrepreneursLists():HasMany
     {
         return $this->hasMany(EntrepreneursList::class);
     }
 
-    
 
-    public function Reviews()
+    public function resenas()
     {
         return $this->hasMany(Review::class);
     }
 
-    public function scopeIncluded(Builder $query)
+    public function inversionistas()
+    {
+        return $this->belongsToMany(Investor::class);
+    }
+
+
+
+      public function entrepreneurs()
+      {
+          return $this->belongsToMany(Entrepreneur::class, 'connections', 'investors_id', 'entrepreneurs_id')
+                      ->withPivot('chat') // Incluye el campo 'chat' de la tabla intermedia
+                      ->withTimestamps(); // Incluye las marcas de tiempo
+      }
+    public function scopeIncluded(Builder $query): void
     {
         if (empty($this->allowIncluded) || empty(request('included'))) {
             return;
@@ -48,7 +62,8 @@ class Investor extends Model
         $query->with($relations);
     }
 
-    public function scopeFilter(Builder $query)
+    // Scope para filtrar resultados
+    public function scopeFilter(Builder $query): void
     {
         if (empty($this->allowFilter) || empty(request('filter'))) {
             return;
@@ -64,7 +79,8 @@ class Investor extends Model
         }
     }
 
-    public function scopeSort(Builder $query)
+    // Scope para ordenar resultados
+    public function scopeSort(Builder $query): void
     {
         if (empty($this->allowSort) || empty(request('sort'))) {
             return;
@@ -76,7 +92,7 @@ class Investor extends Model
         foreach ($sortFields as $sortField) {
             $direction = 'asc';
 
-            if (substr($sortField, 0, 1) == '-') {
+            if (substr($sortField, 0, 1) === '-') {
                 $direction = 'desc';
                 $sortField = substr($sortField, 1);
             }
@@ -87,6 +103,7 @@ class Investor extends Model
         }
     }
 
+    // Scope para obtener o paginar resultados
     public function scopeGetOrPaginate(Builder $query)
     {
         if (request('perPage')) {

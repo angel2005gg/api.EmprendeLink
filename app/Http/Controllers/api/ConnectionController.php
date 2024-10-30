@@ -15,8 +15,12 @@ class ConnectionController extends Controller
      */
     public function index()
     {
-        $connection = Connection::all();
-        return response()->json($connection);
+        $connections = Connection::included()  // Usa el scope para incluir relaciones
+                                ->filter()    // Aplica filtros si existen
+                                ->sort()      // Aplica ordenamiento si existe
+                                ->getOrPaginate(); // Obtiene todos los registros o los pagina
+
+        return response()->json($connections);
     }
 
     /**
@@ -29,12 +33,14 @@ class ConnectionController extends Controller
     {
         $request->validate([
             'chat' => 'required|max:255',
-            // 'entrepreneurs_id' => 'required|exists:entrepreneurs,id',  // Corregido
-            // 'investors_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
+            'investors_id' => 'required|exists:investors,id',
         ]);
-        
 
         $connection = Connection::create($request->all());
+
+        // Carga las relaciones después de crear
+        $connection->load(['entrepreneur', 'investor']);
 
         return response()->json($connection);
     }
@@ -47,8 +53,8 @@ class ConnectionController extends Controller
      */
     public function show($id)
     {
-
-        $connection = Connection::findOrFail($id);
+        $connection = Connection::with(['entrepreneur', 'investor'])
+                              ->findOrFail($id);
         return response()->json($connection);
     }
 
@@ -63,11 +69,14 @@ class ConnectionController extends Controller
     {
         $request->validate([
             'chat' => 'required|max:255',
-            // 'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
-            // 'investors_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'exists:entrepreneurs,id',
+            'investors_id' => 'exists:investors,id',
         ]);
 
         $connection->update($request->all());
+
+        // Recarga el modelo con sus relaciones
+        $connection->load(['entrepreneur', 'investor']);
 
         return response()->json($connection);
     }
@@ -81,6 +90,6 @@ class ConnectionController extends Controller
     public function destroy(Connection $connection)
     {
         $connection->delete();
-        return response()->json($connection);
+        return response()->json(['message' => 'Connection deleted successfully']);
     }
 }

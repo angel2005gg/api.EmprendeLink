@@ -32,12 +32,12 @@ use Illuminate\Support\Facades\Route;
     Route::get('/prueba', function () {
         return 'prueba 12kk';
     });
-
+// ruta que necesito: http://127.0.0.1:8000/api/investors/1?included=entrepreneurs
     Route::get('investors', [InvestorController::class, 'index'])->name('api.investors.index');
-Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
-Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
-Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
-Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
+    Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
+    Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
+    Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
+    Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
 
 
     Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
@@ -52,7 +52,7 @@ Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->n
     Route::get('review/{review}', [ReviewController::class,'show'])->name('api.reviews.show');
     Route::put('review/{review}', [ReviewController::class,'update'])->name('api.reviews.update');
     Route::delete('review/{review}', [ReviewController::class,'destroy'])->name('api.reviews.delete');
-  
+
     Route::get('Entrepreneurs', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
     Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
     Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
@@ -65,6 +65,10 @@ Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->n
     Route::put('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'update'])->name('api.entrepreneurLists.update');
     Route::delete('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'destroy'])->name('api.entrepreneurLists.delete');
 
+
+
+
+    // esta es la ruta que necesito para el scope de connection http://127.0.0.1:8000/api/connection/?included=entrepreneur,investor
     Route::get('connection', [ConnectionController::class, 'index'])->name('api.connection.index');
     Route::post('connection', [ConnectionController::class, 'store'])->name('api.connection.store');
     Route::get('connection/{connection}', [ConnectionController::class, 'show'])->name('api.connection.show');
@@ -80,17 +84,19 @@ Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->n
         Route::delete('/delete/{create_review}',[ReviewController::class,'destroy']);
     });
 
-
-
-    // Route::prefix(prefix: 'connection')->group(function(){
-    //     Route::post('/create',[ConnectionController::class,'store']);
-    //     Route::get('/listar',[ConnectionController::class,'index']);
-    //     Route::get('/show/{id}',[ConnectionController::class,'show']);
-    //     Route::put('/update/{connection}',[ConnectionController::class,'update']);
-    //     Route::delete('/delete/{connection}',[ConnectionController::class,'destroy']);
+    // Route::prefix(prefix: 'investors')->group(function(){
+        Route::post('/create',[InvestorController::class,'store']);
+        Route::get('/investors_listar',[InvestorController::class,'index']);
+        Route::get('/show/{id}',[InvestorController::class,'show']);
+        Route::put('/update/{connection}',[InvestorController::class,'update']);
+        Route::delete('/delete/{connection}',[InvestorController::class,'destroy']);
     // });
 
-    
+    Route::post('/create',[EntrepreneurController::class,'store']);
+    Route::get('/entrepeneur_listar',[EntrepreneurController::class,'index']);
+    Route::get('/show/{id}',[EntrepreneurController::class,'show']);
+    Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
+    Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
 
 
 
