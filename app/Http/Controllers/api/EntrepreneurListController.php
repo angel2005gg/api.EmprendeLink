@@ -14,7 +14,10 @@ class EntrepreneurListController extends Controller
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneursList::included()->filter()->sort()->getOrPaginate();
+        $entrepreneurLists = entrepreneursList::all();
+        $entrepreneurLists = entrepreneursList::included()->get();
+        $entrepreneurLists = entrepreneursList::included()->filter()->get();
+
         return response()->json($entrepreneurLists);
     }
 
