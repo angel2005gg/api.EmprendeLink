@@ -19,7 +19,7 @@ class Connection extends Model
     protected $allowIncluded = ['entrepreneur', 'investor'];
 
     // Define los campos por los que se puede ordenar
-    protected $allowSort = ['id_connection', 'chat', 'entrepreneurs_id', 'investors_id', 'created_at'];
+    protected $allowSort = ['id_connection', 'chat', 'entrepreneurs_id', 'investors_id'];
 
     // Define los campos por los que se puede filtrar
     protected $allowFilter = ['chat', 'entrepreneurs_id', 'investors_id'];

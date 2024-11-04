@@ -50,7 +50,7 @@ class ConnectionController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function show($id)
     {
         $connection = Connection::with(['entrepreneur', 'investor'])
@@ -90,6 +90,6 @@ class ConnectionController extends Controller
     public function destroy(Connection $connection)
     {
         $connection->delete();
-        return response()->json(['message' => 'Connection deleted successfully']);
+
     }
 }
