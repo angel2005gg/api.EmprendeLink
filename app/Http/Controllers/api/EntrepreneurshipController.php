@@ -12,6 +12,10 @@ class EntrepreneurshipController extends RoutingController
     public function index()
     {
         $entrepreneurships = Entrepreneurship::included()->get(); // Actualizado el nombre del modelo
+          $entrepreneurships = Entrepreneurship::included()->get();
+        $entrepreneurships=Entrepreneurship::included()->filter();
+        $entrepreneurships=Entrepreneurship::included()->filter()->sort()->get();
+        $entrepreneurships=Entrepreneurship::included()->filter()->sort()->getOrPaginate();
         return response()->json($entrepreneurships);
     }
 

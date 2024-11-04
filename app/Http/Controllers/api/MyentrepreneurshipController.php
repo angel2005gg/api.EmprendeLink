@@ -12,6 +12,10 @@ class MyentrepreneurshipController extends RoutingController
     public function index()
     {
         $myentrepreneurships = Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
+        $myentrepreneurships = Myentrepreneurship::included()->get();
+        $myentrepreneurships=Myentrepreneurship::included()->filter();
+        $myentrepreneurships=Myentrepreneurship::included()->filter()->sort()->get();
+        $myentrepreneurships=Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
         return response()->json($myentrepreneurships);
     }
 
