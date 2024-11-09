@@ -17,11 +17,13 @@ class ReviewController extends RoutingController
     {
         $review=Review::all();
         $review = Review::included()->get();
+        $review = Review ::included()->filter()->get();
         // $categories=Category::included()->filter();
         // $categories=Category::included()->filter()->sort()->get();
         // $categories=Category::included()->filter()->sort()->getOrPaginate();
         return response()->json($review);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -53,8 +55,8 @@ class ReviewController extends RoutingController
      * @return \Illuminate\Http\Response
      */
     public function show($id) //si se pasa $id se utiliza la comentada
-    {  
-        
+    {
+
        // $category = Category::findOrFail($id);
         // $category = Category::with(['posts.user'])->findOrFail($id);
         // $category = Category::with(['posts'])->findOrFail($id);

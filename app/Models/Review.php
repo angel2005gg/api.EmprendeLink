@@ -16,7 +16,7 @@ class Review extends Model
 
     protected $allowIncluded = ['entrepreneur','Entrepreneurship', 'investor']; // Relación permitida para incluir.
 
-    protected $allowFilter = ['id', 'name', 'lastname', 'correo','Entrepreneurship_id', 'investor_id', 'entrepreneur_id']; // Campos permitidos para filtrar.
+    protected $allowFilter = ['qualification', 'comment','entrepreneur_id','Entrepreneurship_id', 'investor_id' ];
     protected $allowSort = ['id', 'name', 'lastname', 'correo','Entrepreneurship_id', 'investor_id','entrepreneur_id']; // Campos permitidos para ordenar.
 
     // // Relación muchos a muchos con Emprendedores
