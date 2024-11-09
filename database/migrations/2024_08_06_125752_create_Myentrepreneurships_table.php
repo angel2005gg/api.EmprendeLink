@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('Myentrepreneurships', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('description'); 
-            $table->String('especifications');
-            $table->string('category');
+            // $table->string('name');
+            // $table->string('description'); 
+            // $table->String('especifications');
+          
         
 
             $table->unsignedBigInteger('entrepreneur_id')->nullable();

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('location');
             $table->string('url');
+            $table->string('category');
             $table->date('expiration_date');
              
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
