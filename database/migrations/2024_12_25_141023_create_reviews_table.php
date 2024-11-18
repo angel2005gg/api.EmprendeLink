@@ -21,10 +21,10 @@ return new class extends Migration
                   ->references('id')
                   ->on('entrepreneurs')->onDelete('cascade');
 
-            $table->unsignedBigInteger('Entrepreneurships_id')->nullable();
-            $table->foreign('Entrepreneurships_id')
+            $table->unsignedBigInteger('entrepreneurships_id')->nullable();
+            $table->foreign('entrepreneurships_id')
                   ->references('id')
-                  ->on('Entrepreneurships')->onDelete('cascade');
+                  ->on('entrepreneurships')->onDelete('cascade');
 
             $table->unsignedBigInteger('investor_id')->nullable();
             $table->foreign('investor_id')
