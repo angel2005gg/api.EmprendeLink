@@ -8,10 +8,7 @@ use App\Http\Controllers\Api\MyentrepreneurshipController;
 use App\Http\Controllers\Api\EntrepreneurshipController;
 use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
 
-
-
 use App\Http\Controllers\Api\InvestorController;
-
 
 
 
@@ -33,7 +30,8 @@ use Illuminate\Support\Facades\Route;
         return 'prueba 12kk';
     });
 // ruta que necesito: http://127.0.0.1:8000/api/investors/1?included=entrepreneurs
-    Route::get('investors', [InvestorController::class, 'index'])->name('api.investors.index');
+
+    Route::get('/investors', [InvestorController::class, 'index'])->name('api.investors.index');
     Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
     Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
     Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');

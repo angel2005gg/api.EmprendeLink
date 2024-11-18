@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Investor;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class InvestorController extends Controller
 {
