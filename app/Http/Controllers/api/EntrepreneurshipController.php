@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Entrepreneurship; // Actualizado el nombre del modelo
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller;
 
-class EntrepreneurshipController extends RoutingController
+class EntrepreneurshipController extends Controller
 {
     public function index()
     {

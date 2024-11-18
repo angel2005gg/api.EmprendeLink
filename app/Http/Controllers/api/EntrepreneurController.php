@@ -5,9 +5,8 @@ use App\Models\Entrepreneur;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Routing\Controller as RoutingController;
 
-class EntrepreneurController extends RoutingController
+class EntrepreneurController extends Controller
 {
     /**
      * Display a listing of the resource.

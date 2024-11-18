@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Investor;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller;
 
-class InvestorController extends RoutingController
+class InvestorController extends Controller
 {
     public function index()
     {
