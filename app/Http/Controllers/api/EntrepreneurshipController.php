@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Models\Entrepreneurship; // Actualizado el nombre del modelo
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class EntrepreneurshipController extends Controller
 {

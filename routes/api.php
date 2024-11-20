@@ -88,19 +88,19 @@ Route::controller(InvestorController::class)->group(function () {
         Route::delete('/delete/{create_review}',[ReviewController::class,'destroy']);
     });
 
-    // Route::prefix(prefix: 'investors')->group(function(){
-        Route::post('/create',[InvestorController::class,'store']);
-        Route::get('/investors_listar',[InvestorController::class,'index']);
-        Route::get('/show/{id}',[InvestorController::class,'show']);
-        Route::put('/update/{connection}',[InvestorController::class,'update']);
-        Route::delete('/delete/{connection}',[InvestorController::class,'destroy']);
-    // });
+    // // Route::prefix(prefix: 'investors')->group(function(){
+    //     Route::post('/create',[InvestorController::class,'store']);
+    //     Route::get('/investors_listar',[InvestorController::class,'index']);
+    //     Route::get('/show/{id}',[InvestorController::class,'show']);
+    //     Route::put('/update/{connection}',[InvestorController::class,'update']);
+    //     Route::delete('/delete/{connection}',[InvestorController::class,'destroy']);
+    // // });
 
-    Route::post('/create',[EntrepreneurController::class,'store']);
-    Route::get('/entrepeneur_listar',[EntrepreneurController::class,'index']);
-    Route::get('/show/{id}',[EntrepreneurController::class,'show']);
-    Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
-    Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
+    // Route::post('/create',[EntrepreneurController::class,'store']);
+    // Route::get('/entrepeneur_listar',[EntrepreneurController::class,'index']);
+    // Route::get('/show/{id}',[EntrepreneurController::class,'show']);
+    // Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
+    // Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
 
 
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Models\Myentrepreneurship;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 
 class MyentrepreneurshipController extends Controller
 {
