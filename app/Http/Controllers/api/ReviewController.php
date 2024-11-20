@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller;
 
-class ReviewController extends RoutingController
+class ReviewController extends Controller
 {
      /**
      * Display a listing of the resource.

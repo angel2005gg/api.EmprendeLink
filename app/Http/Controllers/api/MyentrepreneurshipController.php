@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Myentrepreneurship;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller;
 
-class MyentrepreneurshipController extends RoutingController
+class MyentrepreneurshipController extends Controller
 {
     public function index()
     {

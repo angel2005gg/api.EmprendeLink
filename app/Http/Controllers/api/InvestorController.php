@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Models\Investor;
 use Illuminate\Http\Request;
@@ -10,13 +10,10 @@ class InvestorController extends Controller
 {
     public function index()
     {
-
-        $investors = Investor::all();
-
-        // $investors = Investor::included() // Incluye relaciones según el parámetro 'included'
-        //                     ->filter()   // Aplica filtros según el parámetro 'filter'
-        //                     ->sort()     // Ordena los resultados según el parámetro 'sort'
-        //                     ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
+        $investors = Investor::included() // Incluye relaciones según el parámetro 'included'
+                            ->filter()   // Aplica filtros según el parámetro 'filter'
+                            ->sort()     // Ordena los resultados según el parámetro 'sort'
+                            ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
         return response()->json($investors);
     }
 
