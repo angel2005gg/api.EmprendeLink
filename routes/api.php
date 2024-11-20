@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/prueba', function () {
         return 'prueba 12kk';
     });
+
+
 // ruta que necesito: http://127.0.0.1:8000/api/investors/1?included=entrepreneurs
 
 // Route::get('/investors', [App\Http\Controllers\Api\InvestorController::class, 'index'])->name('api.investors.index');

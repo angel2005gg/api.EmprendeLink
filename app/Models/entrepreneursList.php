@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class EntrepreneursList extends Model
 {
     use HasFactory;
-
     protected $table = 'entrepreneursLists'; 
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
