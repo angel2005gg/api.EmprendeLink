@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\EntrepreneurController;
 use App\Http\Controllers\Api\EntrepreneurListController;
 use App\Http\Controllers\Api\MyentrepreneurshipController;
 use App\Http\Controllers\Api\EntrepreneurshipController;
-use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
+use App\Http\Controllers\api\PublishEntrepreneurshipsController;
 
 use App\Http\Controllers\Api\InvestorController;
 
