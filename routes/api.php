@@ -11,7 +11,6 @@ use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
 use App\Http\Controllers\Api\InvestorController;
 
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,14 +32,16 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/investors', [App\Http\Controllers\Api\InvestorController::class, 'index'])->name('api.investors.index');
 
+
+
     Route::get('/investors', [InvestorController::class, 'index'])->name('api.investors.index');
-    Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
+    Route::post('investor', [InvestorController::class, 'store'])->name('api.investors.store');
     Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
     Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
     Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
 
 
-    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
+    Route::get('publicares', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
     Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
@@ -53,13 +54,13 @@ use Illuminate\Support\Facades\Route;
     Route::put('review/{review}', [ReviewController::class,'update'])->name('api.reviews.update');
     Route::delete('review/{review}', [ReviewController::class,'destroy'])->name('api.reviews.delete');
 
-    Route::get('Entrepreneurs', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
+    Route::get('Entrepreneur', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
     Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
     Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
     Route::put('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
     Route::delete('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
 
-    Route::get('entrepreneurLists', [EntrepreneurListController::class, 'index'])->name('api.entrepreneurLists.index');
+    Route::get('entrepreneurList', [EntrepreneurListController::class, 'index'])->name('api.entrepreneurLists.index');
     Route::post('entrepreneurLists', [EntrepreneurListController::class, 'store'])->name('api.entrepreneurLists.store');
     Route::get('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'show'])->name('api.entrepreneurLists.show');
     Route::put('entrepreneurLists/{entrepreneurList}', [EntrepreneurListController::class, 'update'])->name('api.entrepreneurLists.update');
@@ -70,7 +71,7 @@ use Illuminate\Support\Facades\Route;
 
     // esta es la ruta que necesito para el scope de connection http://127.0.0.1:8000/api/connection/?included=entrepreneur,investor
     Route::get('connection', [ConnectionController::class, 'index'])->name('api.connection.index');
-    Route::post('connection', [ConnectionController::class, 'store'])->name('api.connection.store');
+    Route::post('connections', [ConnectionController::class, 'store'])->name('api.connection.store');
     Route::get('connection/{connection}', [ConnectionController::class, 'show'])->name('api.connection.show');
     Route::put('connection/{connection}', [ConnectionController::class,'update'])->name('api.connection.update');
     Route::delete('connection/{connection}', [ConnectionController::class,'destroy'])->name('api.connection.delete');
