@@ -10,10 +10,13 @@ class InvestorController extends Controller
 {
     public function index()
     {
-        $investors = Investor::included() // Incluye relaciones según el parámetro 'included'
-                            ->filter()   // Aplica filtros según el parámetro 'filter'
-                            ->sort()     // Ordena los resultados según el parámetro 'sort'
-                            ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
+
+        $investors = Investor::all();
+
+        // $investors = Investor::included() // Incluye relaciones según el parámetro 'included'
+        //                     ->filter()   // Aplica filtros según el parámetro 'filter'
+        //                     ->sort()     // Ordena los resultados según el parámetro 'sort'
+        //                     ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
         return response()->json($investors);
     }
 
