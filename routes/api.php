@@ -34,12 +34,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-    Route::get('/investors', [InvestorController::class, 'index'])->name('api.investors.index');
-    Route::post('investor', [InvestorController::class, 'store'])->name('api.investors.store');
-    Route::get('investors/{investor}', [InvestorController::class, 'show'])->name('api.investors.show');
-    Route::put('investors/{investor}', [InvestorController::class, 'update'])->name('api.investors.update');
-    Route::delete('investors/{investor}', [InvestorController::class, 'destroy'])->name('api.investors.destroy');
-
+Route::controller(InvestorController::class)->group(function () {
+    Route::get('/investors', 'index')->name('api.investors.index');
+    Route::post('/investor', 'store')->name('api.investors.store');
+    Route::get('/investors/{investor}', 'show')->name('api.investors.show');
+    Route::put('/investors/{investor}', 'update')->name('api.investors.update');
+    Route::delete('/investors/{investor}', 'destroy')->name('api.investors.destroy');
+});
 
     Route::get('publicares', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
