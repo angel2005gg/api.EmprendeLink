@@ -10,12 +10,12 @@ class MyentrepreneurshipController extends Controller
 {
     public function index()
     {
-        $myentrepreneurships = Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
-        $myentrepreneurships = Myentrepreneurship::included()->get();
-        $myentrepreneurships=Myentrepreneurship::included()->filter();
-        $myentrepreneurships=Myentrepreneurship::included()->filter()->sort()->get();
-        $myentrepreneurships=Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
-        return response()->json($myentrepreneurships);
+        $myentrepreneurship = Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
+        $myentrepreneurship = Myentrepreneurship::included()->get();
+        $myentrepreneurship=Myentrepreneurship::included()->filter();
+        $myentrepreneurship=Myentrepreneurship::included()->filter()->sort()->get();
+        $myentrepreneurship=Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
+        return response()->json($myentrepreneurship);
     }
 
     public function create()
