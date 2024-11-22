@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Investor;
-use App\Models\Investores;
+use App\Models\Investors;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Investore;
-use App\Models\Investors;
+
 
 class InvestorController extends Controller
 {
