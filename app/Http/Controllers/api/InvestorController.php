@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Investor;
+use App\Models\Investores;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Investore;
+use App\Models\Investors;
 
 class InvestorController extends Controller
 {
     public function index()
     {
-        $investors = Investor::included() // Incluye relaciones según el parámetro 'included'
+        $investors = Investors::included() // Incluye relaciones según el parámetro 'included'
                             ->filter()   // Aplica filtros según el parámetro 'filter'
                             ->sort()     // Ordena los resultados según el parámetro 'sort'
                             ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
@@ -32,17 +35,17 @@ class InvestorController extends Controller
             'location' => 'required|max:255',
         ]);
 
-        $investor = Investor::create($request->all());
+        $investor = Investors::create($request->all());
         return response()->json($investor);
     }
 
     public function show($id)
     {
-        $investor = Investor::included()->findOrFail($id);
+        $investor = Investors::included()->findOrFail($id);
         return response()->json($investor);
     }
 
-    public function update(Request $request, Investor $investor)
+    public function update(Request $request, Investors $investor)
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -61,7 +64,7 @@ class InvestorController extends Controller
         return response()->json($investor);
     }
 
-    public function destroy(Investor $investor)
+    public function destroy(Investors $investor)
     {
         $investor->delete();
         return response()->json($investor);

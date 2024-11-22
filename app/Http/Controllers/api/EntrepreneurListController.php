@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\EntrepreneursList;
+use App\Models\EntrepreneursLista;
 use Illuminate\Http\Request;
 
 class EntrepreneurListController extends Controller
@@ -14,9 +15,9 @@ class EntrepreneurListController extends Controller
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneursList::all();
-        $entrepreneurLists = EntrepreneursList::included()->get();
-        $entrepreneurLists = EntrepreneursList::included()->filter()->get();
+        $entrepreneurLists = EntrepreneursLista::all();
+        $entrepreneurLists = EntrepreneursLista::included()->get();
+        $entrepreneurLists = EntrepreneursLista::included()->filter()->get();
 
         return response()->json($entrepreneurLists);
     }
@@ -33,7 +34,7 @@ class EntrepreneurListController extends Controller
             'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList = EntrepreneursList::create($request->all());
+        $entrepreneurList = EntrepreneursLista::create($request->all());
 
         return response()->json($entrepreneurList);
     }
@@ -45,7 +46,7 @@ class EntrepreneurListController extends Controller
      */
     public function show($id)
     {
-        $entrepreneurList = EntrepreneursList::included()->findOrFail($id);
+        $entrepreneurList = EntrepreneursLista::included()->findOrFail($id);
         return response()->json($entrepreneurList);
     }
 
@@ -55,7 +56,7 @@ class EntrepreneurListController extends Controller
      * @param  \App\Models\EntrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EntrepreneursList $entrepreneurList)
+    public function update(Request $request, EntrepreneursLista $entrepreneurList)
     {
         $request->validate([
             'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
@@ -72,7 +73,7 @@ class EntrepreneurListController extends Controller
      * @param  \App\Models\EntrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EntrepreneursList $entrepreneurList)
+    public function destroy(EntrepreneursLista $entrepreneurList)
     {
         $entrepreneurList->delete();
 

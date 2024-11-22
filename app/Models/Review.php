@@ -33,7 +33,7 @@ class Review extends Model
 
     public function investor()
     {
-        return $this->belongsTo(Investor::class);
+        return $this->belongsTo(Investors::class);
     }
 
     // // Scope para incluir relaciones

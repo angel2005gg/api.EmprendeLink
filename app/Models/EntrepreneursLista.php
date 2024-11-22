@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class EntrepreneursList extends Model
+class EntrepreneursLista extends Model
 {
+
     use HasFactory;
-    protected $table = 'EntrepreneursList'; 
+    protected $table = 'EntrepreneursList';
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
 
@@ -21,7 +22,7 @@ class EntrepreneursList extends Model
 
     public function investors():BelongsTo
     {
-        return $this->belongsTo(Investor::class);
+        return $this->belongsTo(Investors::class);
     }
 
     public function entrepreneurs(){
@@ -113,5 +114,5 @@ class EntrepreneursList extends Model
 
         return $query->get();
     }
-    
+
 }

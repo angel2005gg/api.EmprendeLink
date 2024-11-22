@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Investor extends Model
+class Investors extends Model
 {
     use HasFactory;
 
@@ -22,7 +22,7 @@ class Investor extends Model
 
     public function entrepreneursLists():HasMany
     {
-        return $this->hasMany(EntrepreneursList::class);
+        return $this->hasMany(EntrepreneursLista::class);
     }
 
 
@@ -33,7 +33,7 @@ class Investor extends Model
 
     public function inversionistas()
     {
-        return $this->belongsToMany(Investor::class);
+        return $this->belongsToMany(Investors::class);
     }
 
 
