@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\EntrepreneursList;
-use App\Models\EntrepreneursLista;
 use Illuminate\Http\Request;
 
 class EntrepreneurListController extends Controller
@@ -15,11 +14,11 @@ class EntrepreneurListController extends Controller
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneursLista::all();
-        $entrepreneurLists = EntrepreneursLista::included()->get();
-        $entrepreneurLists = EntrepreneursLista::included()->filter()->get();
+        // $entrepreneurLists = EntrepreneursLista::all();
+        $EntrepreneurLists = EntrepreneursList::included()->get();
+        $EntrepreneurLists = EntrepreneursList::included()->filter()->get();
 
-        return response()->json($entrepreneurLists);
+        return response()->json($EntrepreneurLists);
     }
 
     /**
@@ -34,9 +33,9 @@ class EntrepreneurListController extends Controller
             'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList = EntrepreneursLista::create($request->all());
+        $EntrepreneurLists = EntrepreneursList::create($request->all());
 
-        return response()->json($entrepreneurList);
+        return response()->json($EntrepreneurLists);
     }
 
     /**
@@ -46,8 +45,8 @@ class EntrepreneurListController extends Controller
      */
     public function show($id)
     {
-        $entrepreneurList = EntrepreneursLista::included()->findOrFail($id);
-        return response()->json($entrepreneurList);
+        $EntrepreneurLists = EntrepreneursList::included()->findOrFail($id);
+        return response()->json($EntrepreneurLists);
     }
 
     /**
@@ -56,16 +55,16 @@ class EntrepreneurListController extends Controller
      * @param  \App\Models\EntrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EntrepreneursLista $entrepreneurList)
+    public function update(Request $request, EntrepreneursList $EntrepreneurLists)
     {
         $request->validate([
             'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
             'investors_id' => 'required|exists:investors,id',
         ]);
 
-        $entrepreneurList->update($request->all());
+        $EntrepreneurLists->update($request->all());
 
-        return response()->json($entrepreneurList);
+        return response()->json($EntrepreneurLists);
     }
 
     /**
@@ -73,9 +72,9 @@ class EntrepreneurListController extends Controller
      * @param  \App\Models\EntrepreneursList  $entrepreneurList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EntrepreneursLista $entrepreneurList)
+    public function destroy(EntrepreneursList $EntrepreneurLists)
     {
-        $entrepreneurList->delete();
+        $EntrepreneurLists->delete();
 
         return response()->json(null, 204);
     }
