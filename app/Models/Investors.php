@@ -22,7 +22,7 @@ class Investors extends Model
 
     public function entrepreneursLists():HasMany
     {
-        return $this->hasMany(EntrepreneursLista::class);
+        return $this->hasMany(EntrepreneursList::class);
     }
 
 
