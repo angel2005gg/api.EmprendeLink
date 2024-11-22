@@ -35,7 +35,7 @@ class Entrepreneur extends Model
     // Relación muchos a muchos con el modelo Investor
     public function investors()
     {
-        return $this->belongsToMany(Investor::class, 'connections', 'entrepreneurs_id', 'investors_id')
+        return $this->belongsToMany(Investors::class, 'connections', 'entrepreneurs_id', 'investors_id')
                     ->withPivot('chat') // Incluye el campo 'chat' de la tabla intermedia
                     ->withTimestamps(); // Incluye las marcas de tiempo
     }
