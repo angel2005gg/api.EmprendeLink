@@ -114,10 +114,10 @@ Route::controller(InvestorController::class)->group(function () {
 
 // Rutas para Myentrepreneurship
 Route::get('myentrepreneurships', [MyentrepreneurshipController::class, 'index'])->name('api.myentrepreneurships.index');
-Route::post('myentrepreneurships', [MyentrepreneurshipController::class, 'store'])->name('api.myentrepreneurships.store');
-Route::get('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'show'])->name('api.myentrepreneurships.show');
-Route::put('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'update'])->name('api.myentrepreneurships.update');
-Route::delete('myentrepreneurships/{myentrepreneurship}', [MyentrepreneurshipController::class, 'destroy'])->name('api.myentrepreneurships.delete');
+Route::post('myentrepreneurships_2', [MyentrepreneurshipController::class, 'store'])->name('api.myentrepreneurships.store');
+Route::get('myentrepreneurships_3/{myentrepreneurship}', [MyentrepreneurshipController::class, 'show'])->name('api.myentrepreneurships.show');
+Route::put('myentrepreneurships_4/{myentrepreneurship}', [MyentrepreneurshipController::class, 'update'])->name('api.myentrepreneurships.update');
+Route::delete('myentrepreneurships_5/{myentrepreneurship}', [MyentrepreneurshipController::class, 'destroy'])->name('api.myentrepreneurships.delete');
 
 
 // Rutas para Entrepreneurship
