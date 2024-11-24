@@ -46,7 +46,7 @@ Route::controller(InvestorController::class)->group(function () {
     Route::delete('/investors/{investor}', 'destroy')->name('api.investors.destroy');
 });
 
-    Route::get('publicares', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
+    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
     Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
