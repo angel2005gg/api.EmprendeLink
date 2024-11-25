@@ -15,6 +15,7 @@ class PublishEntrepreneurshipsController extends Controller
         $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
         return response()->json($publishEntrepreneurships);
     }
+    
 
     public function store(Request $request)
     {
