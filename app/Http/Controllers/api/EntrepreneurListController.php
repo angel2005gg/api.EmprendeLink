@@ -14,7 +14,7 @@ class EntrepreneurListController extends Controller
      */
     public function index()
     {
-        $entrepreneurLists = EntrepreneursList::all();
+        $EntrepreneurLists = EntrepreneursList::all();
         $EntrepreneurLists = EntrepreneursList::included()->get();
         $EntrepreneurLists = EntrepreneursList::included()->filter()->get();
 

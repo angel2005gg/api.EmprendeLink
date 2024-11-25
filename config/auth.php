@@ -35,12 +35,21 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'api' => [
+        'driver' => 'jwt',  // Asegúrate de que el driver sea 'jwt'
+        'provider' => 'users',
+    ],
+],
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------

@@ -7,8 +7,9 @@ use App\Http\Controllers\api\EntrepreneurListController;
 use App\Http\Controllers\api\MyentrepreneurshipController;
 use App\Http\Controllers\api\EntrepreneurshipController;
 use App\Http\Controllers\api\PublishEntrepreneurshipsController;
-
+use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\InvestorController;
+
 
 
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ Route::controller(InvestorController::class)->group(function () {
     Route::delete('/investors/{investor}', 'destroy')->name('api.investors.destroy');
 });
 
-    Route::get('publicares', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
+    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
     Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
@@ -118,3 +119,25 @@ Route::get('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::
 Route::put('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'update'])->name('api.entrepreneurships.update');
 Route::delete('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'destroy'])->name('api.entrepreneurships.delete');
 
+
+
+
+
+//prueva consumo de api registros para usuario
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+    Route::post('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
+    Route::post('/me', [AuthController::class, 'me'])->name('me');
+});
