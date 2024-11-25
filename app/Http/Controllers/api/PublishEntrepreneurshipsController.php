@@ -14,7 +14,7 @@ class PublishEntrepreneurshipsController extends Controller
         $publishEntrepreneurships = publish_Entrepreneurships::all();
         $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
         // $publishEntrepreneurships = publish_Entrepreneurships::included()->filter();
-         $publishEntrepreneurships=publish_Entrepreneurships::included()->filter()->sort()->get();
+        //  $publishEntrepreneurships=publish_Entrepreneurships::included()->filter()->sort()->get();
          $publishEntrepreneurships=publish_Entrepreneurships::included()->filter()->sort()->getOrPaginate();
 
         $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
