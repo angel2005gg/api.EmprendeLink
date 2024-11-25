@@ -12,10 +12,10 @@ class PublishEntrepreneurshipsController extends RoutingController
     public function index()
     {
         $publishEntrepreneurships = publish_Entrepreneurships::all();
-        // $publishEntrepreneurships = PublishEntrepreneurship::included()->get();
-        // $categories=Category::included()->filter();
-        // $categories=Category::included()->filter()->sort()->get();
-        // $categories=Category::included()->filter()->sort()->getOrPaginate();
+        $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
+        $publishEntrepreneurships = publish_Entrepreneurships::included()->filter();
+         $publishEntrepreneurships=publish_Entrepreneurships::included()->filter()->sort()->get();
+         $publishEntrepreneurships=publish_Entrepreneurships::included()->filter()->sort()->getOrPaginate();
 
         $publishEntrepreneurships = publish_Entrepreneurships::included()->get();
         return response()->json($publishEntrepreneurships);

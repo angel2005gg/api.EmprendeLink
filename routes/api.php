@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
 
 
 use App\Http\Controllers\Api\InvestorController;
-use App\Http\Controllers\Api\PublishEntrepreneurshipsController;
+
 
 
 
@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 
     Route::get('/prueba', function () {
         return 'prueba 12kk';
