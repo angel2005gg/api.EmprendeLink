@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Entrepreneur extends Model
 {
@@ -16,31 +18,44 @@ class Entrepreneur extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'lastname', 
-        'birth_date', 
-        'password', 
-        'phone', 
-        'image', 
-        'email', 
-        'location', 
+        'name',
+        'lastname',
+        'birth_date',
+        'password',
+        'phone',
+        'image',
+        'email',
+        'location',
         'number'
     ];
 
     /**
      * The entrepreneur belongs to many investors.
      */
+    // Relación muchos a muchos con el modelo Investor
     public function investors()
     {
-        return $this->belongsToMany(investor::class);
+        return $this->belongsToMany(Investors::class, 'connections', 'entrepreneurs_id', 'investors_id')
+                    ->withPivot('chat') // Incluye el campo 'chat' de la tabla intermedia
+                    ->withTimestamps(); // Incluye las marcas de tiempo
     }
 
     /**
      * An entrepreneur can have many published projects.
      */
-    public function publishEntrepreneurships()
+    public function publishEntrepreneurships():HasMany
     {
         return $this->hasMany(publish_Entrepreneurships::class);
+    }
+
+    public function Entrepreneurships(): HasMany
+    {
+        return $this->hasMany(Entrepreneurship::class);
+    }
+
+    public function entrepreneursLists()
+    {
+        return $this->hasMany(EntrepreneursLista::class);
     }
 
     public function scopeIncluded(Builder $query)
@@ -129,5 +144,5 @@ class Entrepreneur extends Model
 
 
 
-    
+
 }

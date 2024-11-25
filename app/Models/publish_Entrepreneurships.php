@@ -16,6 +16,10 @@ class publish_Entrepreneurships extends Model
         return $this->hasMany(Entrepreneurship::class);
     }
 
+    public function Myentrepreneurships(){
+        return $this->hasMany(Myentrepreneurship::class);
+    }
+
     public function entrepreneurs(){
         return $this->belongsTo(Entrepreneur::class);
     }
@@ -23,105 +27,132 @@ class publish_Entrepreneurships extends Model
 
     //Campos que se van a asignacion masiva:
 
-    protected $fillable = ['name','phone_number','email','description','location','url','expiration_date'];
-    protected $allowIncluded = ['entrepreneurs'];//las posibles Querys que se pueden realizar
+       // Campos para asignación masiva
+       protected $fillable = [
+        'name',
+        'phone_number',
+        'email',
+        'description',
+        'location',
+        'url',
+        'category',
+        'expiration_date',
+        'specifications',
+        'general_description',
+        'logo_path',
+        'cover_path',
+        'product_images',
+        'product_descriptions',
+        'entrepreneurs_id'
+    ];
 
-    protected $allowFilter = ['id', 'name','phone_number','email','description','location','url','expiration_date'];
+    // Relaciones permitidas para incluir en queries
+    protected $allowIncluded = [
+        'entrepreneurs',
+        'Entrepreneurships',
+        'Myentrepreneurship'
+    ];
 
-    protected $allowSort = ['id', 'name','phone_number','email','description','location','url','expiration_date'];
+    // Campos permitidos para filtrar
+    protected $allowFilter = [
+        'id', 
+        'name',
+        'phone_number',
+        'email',
+        'description',
+        'location',
+        'url',
+        'category',
+        'expiration_date',
+        'specifications',
+        'general_description'
+    ];
 
-    // Scope para incluir relaciones
+    // Campos permitidos para ordenar
+    protected $allowSort = [
+        'id', 
+        'name',
+        'phone_number',
+        'email',
+        'description',
+        'location',
+        'url',
+        'category',
+        'expiration_date'
+    ];
     public function scopeIncluded(Builder $query)
     {
-
-        if(empty($this->allowIncluded)||empty(request('included'))){
-            // validamos que la lista blanca y la variable included enviada a travez de HTTP no este en vacia.
+        if (empty($this->allowIncluded) || empty(request('included'))) {
             return;
         }
 
-
         $relations = explode(',', request('included'));
-         //['posts','relation2']//recuperamos el valor de la variable included y separa sus valores por una coma
-         // return $relations;
-
         $allowIncluded = collect($this->allowIncluded);
-         //colocamos en una colecion lo que tiene $allowIncluded en este caso = ['posts','posts.user']
 
         foreach ($relations as $key => $relationship) {
-            //recorremos el array de relaciones
-
             if (!$allowIncluded->contains($relationship)) {
                 unset($relations[$key]);
             }
         }
+
         $query->with($relations);
-         //se ejecuta el query con lo que tiene $relations en ultimas es el valor en la url de included
-
-        //http://api.EmpredeLink/api/categories?included=posts
-
-
     }
 
+    // Mutador para asegurar que product_images se guarde como JSON
+    public function setProductImagesAttribute($value)
+    {
+        $this->attributes['product_images'] = is_array($value) ? json_encode($value) : $value;
     }
 
+    // Mutador para asegurar que product_descriptions se guarde como JSON
+    public function setProductDescriptionsAttribute($value)
+    {
+        $this->attributes['product_descriptions'] = is_array($value) ? json_encode($value) : $value;
+    }
 
+    // Accesor para obtener product_images como array
+    public function getProductImagesAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 
+    // Accesor para obtener product_descriptions como array
+    public function getProductDescriptionsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 
-// namespace App\Models;
+    // Scope para filtrar por categoría
+    public function scopeByCategory($query, $category)
+    {
+        return $query->where('category', $category);
+    }
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Eloquent\Builder;
+    // Scope para obtener emprendimientos activos (no expirados)
+    public function scopeActive($query)
+    {
+        return $query->where('expiration_date', '>', now());
+    }
 
-// class publish_Entrepreneurships extends Model
-// {
-//     use HasFactory;
-//     protected $table = "publish_Entrepreneurships";
+    // Método para obtener la URL completa del logo
+    public function getLogoUrlAttribute()
+    {
+        return $this->logo_path ? asset('storage/' . $this->logo_path) : null;
+    }
 
-//     public function Entrepreneurships()
-//     {
-//         return $this->hasMany(Entrepreneurship::class);
-//     }
+    // Método para obtener la URL completa de la portada
+    public function getCoverUrlAttribute()
+    {
+        return $this->cover_path ? asset('storage/' . $this->cover_path) : null;
+    }
 
-//     public function entrepreneurs()
-//     {
-//         return $this->belongsTo(Entrepreneur::class);
-//     }
-
-//     protected $fillable = ['name', 'phone_number', 'email', 'description', 'location', 'url', 'expiration_date'];
-//     protected $allowIncluded = ['entrepreneurs'];
-//     protected $allowFilter = ['id', 'name', 'phone_number', 'email', 'description', 'location', 'url', 'expiration_date'];
-//     protected $allowSort = ['id', 'name', 'phone_number', 'email', 'description', 'location', 'url', 'expiration_date'];
-
-//     // Scope para incluir relaciones
-//     public function scopeIncluded(Builder $query)
-//     {
-//         if (empty($this->allowIncluded) || empty(request('included'))) {
-//             return;
-//         }
-
-//         $relations = explode(',', request('included'));
-//         $allowIncluded = collect($this->allowIncluded);
-
-//         foreach ($relations as $key => $relationship) {
-//             if (!$allowIncluded->contains($relationship)) {
-//                 unset($relations[$key]);
-//             }
-//         }
-
-//         $query->with($relations);
-//     }
-
-//     // Scope para filtrar resultados
-//     public function scopeFilter(Builder $query)
-//     {
-//         // Recorre cada campo en allowFilter y verifica si hay un parámetro de consulta para él
-//         foreach ($this->allowFilter as $filter) {
-//             if (request()->has($filter)) {
-//                 $query->where($filter, request($filter));
-//             }
-//         }
-//     }
-// }
-
-
+    // Método para obtener las URLs completas de las imágenes de productos
+    public function getProductImageUrlsAttribute()
+    {
+        if (!$this->product_images) return [];
+        
+        return collect($this->product_images)->map(function($path) {
+            return asset('storage/' . $path);
+        })->toArray();
+    }
+}

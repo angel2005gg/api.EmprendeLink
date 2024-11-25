@@ -5,23 +5,35 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['qualification', 'comment']; //Campos que se van a asignacion masiva:
+    protected $fillable = ['qualification', 'comment','Entrepreneurship_id', 'investor_id', 'entrepreneur_id']; //Campos que se van a asignacion masiva:
 
 
-    protected $allowIncluded = ['emprendedors']; // Relación permitida para incluir.
+    protected $allowIncluded = ['entrepreneur','Entrepreneurship', 'investor']; // Relación permitida para incluir.
 
-    protected $allowFilter = ['id', 'name', 'lastname', 'correo']; // Campos permitidos para filtrar.
-    protected $allowSort = ['id', 'name', 'lastname', 'correo']; // Campos permitidos para ordenar.
+    protected $allowFilter = ['qualification', 'comment','entrepreneur_id','Entrepreneurship_id', 'investor_id' ];
+    protected $allowSort = ['id', 'name', 'lastname', 'correo','Entrepreneurship_id', 'investor_id','entrepreneur_id']; // Campos permitidos para ordenar.
 
     // // Relación muchos a muchos con Emprendedores
-    public function emprendedors()
+    public function entrepreneur()
     {
-        return $this->belongsToMany(Entrepreneur::class);
+        return $this->belongsTo(Entrepreneur::class);
+    }
+
+    public function entrepreneurship()
+{
+    return $this->belongsTo(Entrepreneurship::class, 'Entrepreneurships_id'); // Asegúrate de que el nombre sea correcto
+}
+
+
+    public function investor()
+    {
+        return $this->belongsTo(Investors::class);
     }
 
     // // Scope para incluir relaciones

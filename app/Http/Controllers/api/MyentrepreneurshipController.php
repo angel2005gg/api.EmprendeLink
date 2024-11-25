@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Myentrepreneurship;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use App\Http\Controllers\Controller;
 
-class MyentrepreneurshipController extends RoutingController
+class MyentrepreneurshipController extends Controller
 {
     public function index()
     {
-        $myentrepreneurships = Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
-        return response()->json($myentrepreneurships);
+        // $myentrepreneurship = Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
+        $myentrepreneurship = Myentrepreneurship::included()->get();
+        $myentrepreneurship=Myentrepreneurship::included()->filter();
+        $myentrepreneurship=Myentrepreneurship::included()->filter()->sort()->get();
+        $myentrepreneurship=Myentrepreneurship::included()->filter()->sort()->getOrPaginate();
+        return response()->json($myentrepreneurship);
     }
 
     public function create()
@@ -24,8 +27,9 @@ class MyentrepreneurshipController extends RoutingController
     {
         $request->validate([
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
-            'publishEntrepreneurships_id' => 'nullable|exists:publishEntrepreneurships,id',
+           'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'Review_id' => 'nullable|exists:Review,id',
         ]);
 
         $myentrepreneurship = Myentrepreneurship::create($request->all());
@@ -36,6 +40,8 @@ class MyentrepreneurshipController extends RoutingController
     {
         $myentrepreneurship = Myentrepreneurship::included()->findOrFail($id);
         return response()->json($myentrepreneurship);
+
+        
     }
 
     public function edit(Myentrepreneurship $myentrepreneurship)
@@ -47,8 +53,9 @@ class MyentrepreneurshipController extends RoutingController
     {
         $request->validate([
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
-            'publishEntrepreneurships_id' => 'nullable|exists:publishEntrepreneurships,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'Review_id' => 'nullable|exists:Review,id',
         ]);
 
         $myentrepreneurship->update($request->all());

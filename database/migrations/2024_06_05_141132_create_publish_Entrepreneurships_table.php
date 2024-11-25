@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             
             $table->string('name');
-            $table->integer('phone_number');
-            $table->string('email');
-            $table->string('description');
-            $table->string('location');
-            $table->string('url');
-            $table->date('expiration_date');
+            $table->text('description');
+            $table->string('category');
+            $table->text('specifications');
+            $table->text('general_description');
+            $table->string('logo_path');
+            $table->string('cover_path');
+            $table->json('product_images');
+            $table->json('product_descriptions');
              
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')

@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
-use App\Models\Investor;
+use App\Models\Investors;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use App\Http\Controllers\Controller;
 
-class InvestorController extends RoutingController
+
+class InvestorController extends Controller
 {
     public function index()
     {
-        $investors = Investor::included()->filter()->sort()->getOrPaginate();
+        $investors = Investors::included() // Incluye relaciones según el parámetro 'included'
+                            ->filter()   // Aplica filtros según el parámetro 'filter'
+                            ->sort()     // Ordena los resultados según el parámetro 'sort'
+                            ->getOrPaginate(); // Pagina los resultados si se proporciona el parámetro 'perPage'
         return response()->json($investors);
     }
 
@@ -29,17 +33,17 @@ class InvestorController extends RoutingController
             'location' => 'required|max:255',
         ]);
 
-        $investor = Investor::create($request->all());
+        $investor = Investors::create($request->all());
         return response()->json($investor);
     }
 
     public function show($id)
     {
-        $investor = Investor::included()->findOrFail($id);
+        $investor = Investors::included()->findOrFail($id);
         return response()->json($investor);
     }
 
-    public function update(Request $request, Investor $investor)
+    public function update(Request $request, Investors $investor)
     {
         $request->validate([
             'name' => 'required|max:255',
@@ -58,7 +62,7 @@ class InvestorController extends RoutingController
         return response()->json($investor);
     }
 
-    public function destroy(Investor $investor)
+    public function destroy(Investors $investor)
     {
         $investor->delete();
         return response()->json($investor);

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Connection;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
 
-class ConnectionController extends RoutingController
+class ConnectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,11 @@ class ConnectionController extends RoutingController
      */
     public function index()
     {
-        $connections = Connection::all();
+        $connections = Connection::included()  // Usa el scope para incluir relaciones
+                                ->filter()    // Aplica filtros si existen
+                                ->sort()      // Aplica ordenamiento si existe
+                                ->getOrPaginate(); // Obtiene todos los registros o los pagina
+
         return response()->json($connections);
     }
 
@@ -29,12 +33,14 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',  // Corregido
+            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
             'investors_id' => 'required|exists:investors,id',
         ]);
-        
 
         $connection = Connection::create($request->all());
+
+        // Carga las relaciones después de crear
+        $connection->load(['entrepreneur', 'investor']);
 
         return response()->json($connection);
     }
@@ -44,11 +50,11 @@ class ConnectionController extends RoutingController
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show($id_connection)
+     */ 
+    public function show($id)
     {
-
-        $connection = Connection::findOrFail($id_connection);
+        $connection = Connection::with(['entrepreneur', 'investor'])
+                              ->findOrFail($id);
         return response()->json($connection);
     }
 
@@ -63,11 +69,14 @@ class ConnectionController extends RoutingController
     {
         $request->validate([
             'chat' => 'required|max:255',
-            'entrepreneurs_id' => 'required|exists:entrepreneurs,id',
-            'investors_id' => 'required|exists:investors,id',
+            'entrepreneurs_id' => 'exists:entrepreneurs,id',
+            'investors_id' => 'exists:investors,id',
         ]);
 
         $connection->update($request->all());
+
+        // Recarga el modelo con sus relaciones
+        $connection->load(['entrepreneur', 'investor']);
 
         return response()->json($connection);
     }
@@ -81,6 +90,6 @@ class ConnectionController extends RoutingController
     public function destroy(Connection $connection)
     {
         $connection->delete();
-        return response()->json($connection);
+
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use Illuminate\Routing\Controller;
 
-class ReviewController extends RoutingController
+class ReviewController extends Controller
 {
      /**
      * Display a listing of the resource.
@@ -17,11 +17,13 @@ class ReviewController extends RoutingController
     {
         $review=Review::all();
         $review = Review::included()->get();
+        $review = Review ::included()->filter()->get();
         // $categories=Category::included()->filter();
         // $categories=Category::included()->filter()->sort()->get();
         // $categories=Category::included()->filter()->sort()->getOrPaginate();
         return response()->json($review);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +37,9 @@ class ReviewController extends RoutingController
         $request->validate([
             'qualification' => 'required|max:255',
             'comment' => 'required|max:255',
-
+            'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
+            'Entrepreneurships_id' => 'nullable|exists:Entrepreneurships,id',
+            'investor_id' => 'nullable|exists:investors,id',
 
         ]);
 
@@ -51,8 +55,8 @@ class ReviewController extends RoutingController
      * @return \Illuminate\Http\Response
      */
     public function show($id) //si se pasa $id se utiliza la comentada
-    {  
-        
+    {
+
        // $category = Category::findOrFail($id);
         // $category = Category::with(['posts.user'])->findOrFail($id);
         // $category = Category::with(['posts'])->findOrFail($id);
@@ -75,6 +79,9 @@ class ReviewController extends RoutingController
         $request->validate([
             'qualification' => 'required|max:255',
             'comment' => 'required|max:255' . $review->id,
+            'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
+            'Entrepreneurships_id' => 'nullable|exists:Entrepreneurships,id',
+            'investor_id' => 'nullable|exists:investors,id',
 
         ]);
 

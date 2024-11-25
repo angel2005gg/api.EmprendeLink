@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 use App\Models\Entrepreneur; 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Routing\Controller as RoutingController;
 
-class EntrepreneurController extends RoutingController
+class EntrepreneurController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,7 +39,6 @@ class EntrepreneurController extends RoutingController
             'location' => 'required|max:255',
             'number' => 'required|max:255',
         ]);
-
         // Create a new entrepreneur record
         $entrepreneur = Entrepreneur::create($request->all());
 

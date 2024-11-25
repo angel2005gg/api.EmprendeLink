@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Entrepreneurship; // Actualizado el nombre del modelo
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller as RoutingController;
+use App\Http\Controllers\Controller;
 
-class EntrepreneurshipController extends RoutingController
+class EntrepreneurshipController extends Controller
 {
     public function index()
     {
         $entrepreneurships = Entrepreneurship::included()->get(); // Actualizado el nombre del modelo
+          $entrepreneurships = Entrepreneurship::included()->get();
+        $entrepreneurships=Entrepreneurship::included()->filter();
+        $entrepreneurships=Entrepreneurship::included()->filter()->sort()->get();
+        $entrepreneurships=Entrepreneurship::included()->filter()->sort()->getOrPaginate();
         return response()->json($entrepreneurships);
     }
 
@@ -26,6 +29,7 @@ class EntrepreneurshipController extends RoutingController
             'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
         ]);
 
         $entrepreneurship = Entrepreneurship::create($request->all());
@@ -49,6 +53,7 @@ class EntrepreneurshipController extends RoutingController
             'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
+            'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
         ]);
 
         $entrepreneurship->update($request->all());

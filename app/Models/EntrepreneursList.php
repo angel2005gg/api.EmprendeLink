@@ -3,21 +3,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-
-class entrepreneursList extends Model
+class EntrepreneursList extends Model
 {
-    use HasFactory;
 
-    protected $table = 'entrepreneursLists'; 
+    use HasFactory;
+    protected $table = 'EntrepreneursList';
 
     protected $fillable = ['investors_id', 'entrepreneurs_id'];
 
     protected $allowIncluded = ['investors','entrepreneurs'];
 
+    protected $allowFilter = ['id','investors_id','entrepreneurs_id'];
 
-    public function investors(){
-        return $this->belongsTo(investor::class);
+
+
+    public function investors():BelongsTo
+    {
+        return $this->belongsTo(Investors::class);
     }
 
     public function entrepreneurs(){
@@ -109,5 +114,5 @@ class entrepreneursList extends Model
 
         return $query->get();
     }
-    
+
 }
