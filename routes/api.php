@@ -29,10 +29,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
     Route::get('/prueba', function () {
         return 'prueba 12kk';
     });
+    
 
     Route::get('investors', [InvestorController::class, 'index'])->name('api.investors.index');
 Route::post('investors', [InvestorController::class, 'store'])->name('api.investors.store');
