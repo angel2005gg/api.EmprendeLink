@@ -13,22 +13,24 @@ return new class extends Migration
     {
         Schema::create('publish_Entrepreneurships', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('name');
+            $table->string('slogan');
             $table->text('description');
             $table->string('category');
             $table->text('specifications');
             $table->text('general_description');
-            $table->string('logo_path');
+            $table->string(column: 'logo_path');
+            $table->string(column: 'background');
             $table->string('cover_path');
+            $table->json('name_products');
             $table->json('product_images');
             $table->json('product_descriptions');
-             
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')
                 ->references('id')
                 ->on('entrepreneurs')->onDelete('cascade');
-          
+
             $table->timestamps();
         });
     }

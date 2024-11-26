@@ -69,12 +69,15 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
+        // Verifica si la contraseña es válida y genera el token
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $this->respondWithToken($token);
     }
+
+
 
     /**
      * Get the authenticated User.
@@ -108,6 +111,7 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
+
     /**
      * Get the token array structure.
      *
@@ -115,6 +119,8 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
+
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -123,3 +129,4 @@ class AuthController extends Controller
         ]);
     }
 }
+
