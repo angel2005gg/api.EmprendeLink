@@ -35,7 +35,7 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
     }
     public function investor() // Método de relación para Investor
     {
-        return $this->belongsTo(Investor::class);
+        return $this->belongsTo(Investors::class);
     }
     public function Reviews()
     {
