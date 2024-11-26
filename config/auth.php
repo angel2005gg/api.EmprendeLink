@@ -42,10 +42,12 @@ return [
     ],
 
     'api' => [
-        'driver' => 'jwt',  // Asegúrate de que el driver sea 'jwt'
+        'driver' => 'jwt',
         'provider' => 'users',
     ],
 ],
+
+
 
 
 
