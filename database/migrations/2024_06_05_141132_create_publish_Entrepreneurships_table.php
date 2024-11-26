@@ -21,8 +21,8 @@ return new class extends Migration
             $table->text('general_description');
             $table->string('logo_path');
             $table->string('cover_path');
-            $table->json('product_images');
-            $table->json('product_descriptions');
+            $table->string('product_images');
+            $table->string('product_descriptions');
              
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')
