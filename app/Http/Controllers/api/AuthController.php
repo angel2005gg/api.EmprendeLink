@@ -76,6 +76,7 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+
     /**
      * Get the authenticated User.
      *
@@ -108,7 +109,7 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    
+
     /**
      * Get the token array structure.
      *
@@ -116,6 +117,8 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
+
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -124,3 +127,4 @@ class AuthController extends Controller
         ]);
     }
 }
+
