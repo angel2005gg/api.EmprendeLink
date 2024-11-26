@@ -30,14 +30,14 @@ class AuthController extends Controller
     public function register() {
         $validator = Validator::make(request()->all(), [
             'name' => 'required',
-            'lastname' => 'required',          // Agregar el campo lastname
-            'birth_date' => 'required|date',   // Agregar el campo birth_date
+            'lastname' => 'required',
+            'birth_date' => 'required|date',
             'password' => 'required|confirmed|min:8',
-            'phone' => 'required|integer',     // Agregar el campo phone
-            'image' => 'required|string',      // Agregar el campo image
+            'phone' => 'required|integer',
+            'image' => 'required|string',
             'email' => 'required|email|unique:users',
-            'location' => 'required|string',   // Agregar el campo location
-            'number' => 'required|integer',    // Agregar el campo number
+            'location' => 'required|string',
+            'number' => 'required|integer',
         ]);
 
         if($validator->fails()){
@@ -46,14 +46,14 @@ class AuthController extends Controller
 
         $user = new User;
         $user->name = request()->name;
-        $user->lastname = request()->lastname;    // Guardar lastname
-        $user->birth_date = request()->birth_date; // Guardar birth_date
+        $user->lastname = request()->lastname;
+        $user->birth_date = request()->birth_date;
         $user->password = bcrypt(request()->password);
-        $user->phone = request()->phone;          // Guardar phone
-        $user->image = request()->image;          // Guardar image
+        $user->phone = request()->phone;
+        $user->image = request()->image;
         $user->email = request()->email;
-        $user->location = request()->location;    // Guardar location
-        $user->number = request()->number;        // Guardar number
+        $user->location = request()->location;
+        $user->number = request()->number;        
         $user->save();
 
         return response()->json($user, 201);
@@ -69,12 +69,14 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
+        // Verifica si la contraseña es válida y genera el token
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $this->respondWithToken($token);
     }
+
 
 
     /**
