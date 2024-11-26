@@ -69,12 +69,14 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
+        // Verifica si la contraseña es válida y genera el token
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $this->respondWithToken($token);
     }
+
 
 
     /**
