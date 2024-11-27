@@ -19,7 +19,12 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://localhost:8000', 'https://127.0.0.1:8000'],
+'allowed_origins' => [
+    'http://localhost:8000', // API
+    'http://localhost:8001', // Frontend
+    'https://127.0.0.1:8000', // API en caso de usar HTTPS
+    'https://127.0.0.1:8001', // Frontend en caso de usar HTTPS
+],
 
     'allowed_origins_patterns' => [],
 
