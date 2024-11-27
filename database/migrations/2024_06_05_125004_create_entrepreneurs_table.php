@@ -12,18 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('entrepreneurs', function (Blueprint $table) {
-
             $table->id();
-            $table->string('name');
-            $table->string('lastname');
-            $table->date('birth_date');
-            $table->string('password');
-            $table->integer('phone');
-            $table->string('image');
-            $table->string('email');
-            $table->string('location');
-            $table->integer('number');
-            $table->rememberToken();
+            
+            // Clave foránea a la tabla users
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

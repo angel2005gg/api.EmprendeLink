@@ -35,11 +35,15 @@ class Entrepreneur extends Model
     // Relación muchos a muchos con el modelo Investor
     public function investors()
     {
-        return $this->belongsToMany(Investors::class, 'connections', 'entrepreneurs_id', 'investors_id')
+        return $this->belongsToMany(Investor::class, 'connections', 'entrepreneurs_id', 'investors_id')
                     ->withPivot('chat') // Incluye el campo 'chat' de la tabla intermedia
                     ->withTimestamps(); // Incluye las marcas de tiempo
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * An entrepreneur can have many published projects.
      */
@@ -55,7 +59,7 @@ class Entrepreneur extends Model
 
     public function entrepreneursLists()
     {
-        return $this->hasMany(EntrepreneursLista::class);
+        return $this->hasMany(EntrepreneursList::class);
     }
 
     public function scopeIncluded(Builder $query)

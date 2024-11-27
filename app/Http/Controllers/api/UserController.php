@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\api;
+namespace App\Models;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
 {
@@ -60,6 +62,20 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    
+    public function investor()
+    {
+        return $this->hasOne(Investor::class);
+    }
+
+    // Relación uno a uno con Entrepreneur
+    public function entrepreneur()
+    {
+        return $this->hasOne(Entrepreneur::class);
+    }
+
+
 
     public function show($id)
     {
