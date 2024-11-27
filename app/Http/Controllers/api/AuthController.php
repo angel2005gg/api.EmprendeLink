@@ -53,7 +53,7 @@ class AuthController extends Controller
         $user->image = request()->image;
         $user->email = request()->email;
         $user->location = request()->location;
-        $user->number = request()->number;        
+        $user->number = request()->number;
         $user->save();
 
         return response()->json($user, 201);
