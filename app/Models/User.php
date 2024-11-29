@@ -57,6 +57,21 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return mixed
      */
+
+
+     public function investor()
+     {
+         return $this->hasOne(Investor::class);
+     }
+ 
+     // Relación uno a uno con Entrepreneur
+     public function entrepreneur()
+     {
+         return $this->hasOne(Entrepreneur::class);
+     }
+ 
+ 
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -76,5 +91,5 @@ class User extends Authenticatable implements JWTSubject
 
 
 
-    
+
 }

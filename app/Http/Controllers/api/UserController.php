@@ -64,18 +64,6 @@ class UserController extends Controller
     }
 
     
-    public function investor()
-    {
-        return $this->hasOne(Investor::class);
-    }
-
-    // Relación uno a uno con Entrepreneur
-    public function entrepreneur()
-    {
-        return $this->hasOne(Entrepreneur::class);
-    }
-
-
 
     public function show($id)
     {
