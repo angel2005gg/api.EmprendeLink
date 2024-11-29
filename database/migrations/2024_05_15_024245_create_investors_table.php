@@ -12,21 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('investors', function (Blueprint $table) {
-
             $table->id();
-            $table->string('name');
-            $table->string('lastname');
-            $table->date('birth_date');
-            $table->integer('investment_number');
-            $table->string('password');
-            $table->integer('document');
-            $table->integer('phone');
-            $table->integer('image');
-            $table->string('email');
-            $table->string('location');
-
+            
+            // Clave foránea a la tabla users
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            
             $table->timestamps();
-
         });
     }
 

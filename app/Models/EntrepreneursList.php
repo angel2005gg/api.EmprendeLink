@@ -22,7 +22,7 @@ class EntrepreneursList extends Model
 
     public function investors():BelongsTo
     {
-        return $this->belongsTo(Investors::class);
+        return $this->belongsTo(Investor::class);
     }
 
     public function entrepreneurs(){

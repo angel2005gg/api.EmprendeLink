@@ -26,6 +26,7 @@ return new class extends Migration
             $table->json('name_products');
             $table->json('product_images');
             $table->json('product_descriptions');
+            
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')
                 ->references('id')

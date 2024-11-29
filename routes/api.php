@@ -40,7 +40,7 @@ Route::get('/prueba', function () {
 
 
 Route::controller(InvestorController::class)->group(function () {
-    Route::get('/investors', 'index')->name('api.investors.index');
+    Route::get('/investores', 'index')->name('api.investors.index');
     Route::post('/investor', 'store')->name('api.investors.store');
     Route::get('/investors/{investor}', 'show')->name('api.investors.show');
     Route::put('/investors/{investor}', 'update')->name('api.investors.update');

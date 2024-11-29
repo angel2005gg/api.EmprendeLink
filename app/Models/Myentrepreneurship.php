@@ -37,7 +37,7 @@ class Myentrepreneurship extends Model
 
     public function investor()
     {
-        return $this->belongsTo(Investors::class);
+        return $this->belongsTo(Investor::class);
     }
 
    public function Review()
