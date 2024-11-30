@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
-            
+
             // Clave foránea a la tabla users
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
