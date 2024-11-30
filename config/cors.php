@@ -25,6 +25,7 @@ return [
     'http://localhost:8001', // Frontend
     'https://127.0.0.1:8000', // API en caso de usar HTTPS
     'https://127.0.0.1:8001', // Frontend en caso de usar HTTPS
+    'http://clienteemprendelink-production.up.railway.app',
 ],
 
     'allowed_origins_patterns' => [],
