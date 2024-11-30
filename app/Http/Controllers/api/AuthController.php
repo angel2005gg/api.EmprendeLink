@@ -5,9 +5,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Entrepreneur; // Asegúrate de tener esta línea
+use App\Models\Investor;     // Y esta
+use Illuminate\Support\Facades\DB;
 use Validator;
-
 
 class AuthController extends Controller
 {
@@ -27,37 +28,70 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register() {
+    public function register()
+    {
         $validator = Validator::make(request()->all(), [
             'name' => 'required',
             'lastname' => 'required',
             'birth_date' => 'required|date',
             'password' => 'required|confirmed|min:8',
-            'phone' => 'required|integer',
+            'phone' => 'required|string',
             'image' => 'required|string',
             'email' => 'required|email|unique:users',
             'location' => 'required|string',
             'number' => 'required|integer',
+            'role' => 'required|in:entrepreneur,investor',
+
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $user = new User;
-        $user->name = request()->name;
-        $user->lastname = request()->lastname;
-        $user->birth_date = request()->birth_date;
-        $user->password = bcrypt(request()->password);
-        $user->phone = request()->phone;
-        $user->image = request()->image;
-        $user->email = request()->email;
-        $user->location = request()->location;
-        $user->number = request()->number;
-        $user->save();
+        try {
+            DB::beginTransaction();
 
-        return response()->json($user, 201);
+            // Creamos el usuario
+            $user = new User;
+            $user->name = request()->name;
+            $user->lastname = request()->lastname;
+            $user->birth_date = request()->birth_date;
+            $user->password = bcrypt(request()->password);
+            $user->phone = request()->phone;
+            $user->image = request()->image;
+            $user->email = request()->email;
+            $user->location = request()->location;
+            $user->number = request()->number;
+            $user->save();
+
+            // Dependiendo del rol, creamos el registro en la tabla correspondiente
+            if (request()->role === 'entrepreneur') {
+                $entrepreneur = new Entrepreneur;
+                $entrepreneur->user_id = $user->id; // Establecer explícitamente el user_id
+                $entrepreneur->save();
+            } else {
+                $investor = new Investor;
+                $investor->user_id = $user->id; // Establecer explícitamente el user_id
+                // Campos específicos para inversionistas si los hay
+                $investor->save();
+            }
+
+            DB::commit();
+
+            return response()->json($user, 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Error en el registro',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
+
+
+
+
 
 
     /**
