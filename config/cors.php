@@ -1,4 +1,3 @@
-cors en api para conectar de manera local:
 <?php
 
 return [
@@ -8,11 +7,11 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'http://localhost:8000', // Mantén esto si aún haces pruebas locales
+        'http://localhost:8000',
         'http://localhost:8001',
         'https://127.0.0.1:8000',
         'https://127.0.0.1:8001',
-        'https://clienteemprendelink-production.up.railway.app', // Agrega tu frontend en Railway
+        'https://clienteemprendelink-production.up.railway.app',
     ],
 
     'allowed_origins_patterns' => [],
