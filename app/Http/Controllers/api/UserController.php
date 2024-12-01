@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\api;
+
 namespace App\Models;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Routing\Controller;
+
+// use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
