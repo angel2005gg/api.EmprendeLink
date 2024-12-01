@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('slogan');
             $table->text('description');
             $table->string('category');
-            $table->text('specifications');
             $table->text('general_description');
             $table->string(column: 'logo_path');
             $table->string(column: 'background');
