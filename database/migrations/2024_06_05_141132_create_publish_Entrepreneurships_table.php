@@ -16,15 +16,13 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('slogan');
-            $table->text('description');
             $table->string('category');
             $table->text('general_description');
-            $table->string(column: 'logo_path');
-            $table->string(column: 'background');
-            $table->string('cover_path');
-            $table->json('name_products');
-            $table->json('product_images');
-            $table->json('product_descriptions');
+            $table->string('logo_path');
+            $table->string('background');
+            $table->string('name_products');
+            $table->string('product_images');
+            $table->text('product_descriptions');
             
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
             $table->foreign('entrepreneurs_id')
