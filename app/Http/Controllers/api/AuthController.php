@@ -101,16 +101,33 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['email', 'password', 'role']);
 
-        // Verifica si la contraseña es válida y genera el token
-        if (! $token = auth()->attempt($credentials)) {
+        // Validar que el rol sea válido
+        if (!in_array($credentials['role'], ['entrepreneur', 'investor'])) {
+            return response()->json(['error' => 'Rol inválido'], 400);
+        }
+
+        // Verificar credenciales y rol
+        if (!$token = auth()->attempt([
+            'email' => $credentials['email'],
+            'password' => $credentials['password']
+        ])) {
             return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        // Verificar que el usuario tenga el rol correcto
+        $user = auth()->user();
+        if ($credentials['role'] === 'entrepreneur' && !$user->entrepreneur) {
+            return response()->json(['error' => 'No tienes permisos de emprendedor'], 403);
+        }
+
+        if ($credentials['role'] === 'investor' && !$user->investor) {
+            return response()->json(['error' => 'No tienes permisos de inversionista'], 403);
         }
 
         return $this->respondWithToken($token);
     }
-
 
 
     /**
