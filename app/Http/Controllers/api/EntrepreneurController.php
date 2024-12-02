@@ -16,6 +16,8 @@ class EntrepreneurController extends Controller
     public function index()
     {
         $entrepreneurs = Entrepreneur::all();
+        $entrepreneurs = Entrepreneur::included()->get();
+        $entrepreneurs = Entrepreneur::included()->filter()->get();
         return response()->json($entrepreneurs);
     }
 
