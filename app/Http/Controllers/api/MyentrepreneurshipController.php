@@ -41,7 +41,7 @@ class MyentrepreneurshipController extends Controller
         $myentrepreneurship = Myentrepreneurship::included()->findOrFail($id);
         return response()->json($myentrepreneurship);
 
-        
+
     }
 
     public function edit(Myentrepreneurship $myentrepreneurship)
