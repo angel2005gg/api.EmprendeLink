@@ -32,10 +32,10 @@ class PublishEntrepreneurshipsController extends Controller
             'slogan' => 'required|string|max:255',
             'category' => 'required|string',
             'general_description' => 'required|string',
-            'logo_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'background' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'background' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'name_products' => 'required|array|min:1',
-            'product_images' => 'required|array|min:1',
+            'product_images' => 'nullable|array|min:1',
             'product_descriptions' => 'required|array|min:1',
         ]);
 
@@ -110,10 +110,10 @@ class PublishEntrepreneurshipsController extends Controller
             'slogan' => 'required|string|max:255',
             'category' => 'required|string',
             'general_description' => 'required|string',
-            'logo_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'background' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'background' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'name_products' => 'required|array|min:1',
-            'product_images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_descriptions' => 'required|array|min:1',
         ]);
 
