@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\publish_Entrepreneurships;
+use App\Models\PublishEntrepreneurships;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 
 class PublishEntrepreneurshipsController extends Controller
 {
     public function index()
     {
-        $publishEntrepreneurships = publish_Entrepreneurships::all();
+        $publishEntrepreneurships = PublishEntrepreneurships::all();
         return response()->json($publishEntrepreneurships, 200);
     }
 
@@ -21,16 +20,16 @@ class PublishEntrepreneurshipsController extends Controller
         $data = $request->all();
 
         try {
-            $entrepreneurship = publish_Entrepreneurships::create([
+            $entrepreneurship = PublishEntrepreneurships::create([
                 'name' => $data['name'] ?? 'Nombre de prueba',
                 'slogan' => $data['slogan'] ?? 'Slogan de prueba',
                 'category' => $data['category'] ?? 'Categoría de prueba',
                 'general_description' => $data['general_description'] ?? 'Descripción general de prueba',
-                'logo_path' => $data['logo_path'] ?? 'https://via.placeholder.com/150',
-                'background' => $data['background'] ?? 'https://via.placeholder.com/300',
-                'name_products' => json_encode($data['name_products'] ?? ['Producto de prueba']),
-                'product_images' => json_encode($data['product_images'] ?? ['https://via.placeholder.com/150']),
-                'product_descriptions' => json_encode($data['product_descriptions'] ?? ['Descripción de prueba']),
+                'logo_path' => $data['logo_path'] ?? 'https://via.placeholder.com/150', // URL como string
+                'background' => $data['background'] ?? 'https://via.placeholder.com/300', // URL como string
+                'name_products' => json_encode($data['name_products'] ?? ['Producto de prueba']), // Guardar como JSON
+                'product_images' => json_encode($data['product_images'] ?? ['https://via.placeholder.com/150']), // Guardar como JSON
+                'product_descriptions' => json_encode($data['product_descriptions'] ?? ['Descripción de prueba']), // Guardar como JSON
                 'entrepreneurs_id' => $data['entrepreneurs_id'] ?? 1,
             ]);
 
@@ -49,7 +48,7 @@ class PublishEntrepreneurshipsController extends Controller
     public function show($id)
     {
         try {
-            $publishEntrepreneurship = publish_Entrepreneurships::findOrFail($id);
+            $publishEntrepreneurship = PublishEntrepreneurships::findOrFail($id);
             return response()->json([
                 'message' => 'Emprendimiento encontrado.',
                 'data' => $publishEntrepreneurship,
@@ -65,7 +64,7 @@ class PublishEntrepreneurshipsController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $publishEntrepreneurship = publish_Entrepreneurships::findOrFail($id);
+            $publishEntrepreneurship = PublishEntrepreneurships::findOrFail($id);
             $data = $request->all();
 
             $publishEntrepreneurship->update([
@@ -96,7 +95,7 @@ class PublishEntrepreneurshipsController extends Controller
     public function destroy($id)
     {
         try {
-            $publishEntrepreneurship = publish_Entrepreneurships::findOrFail($id);
+            $publishEntrepreneurship = PublishEntrepreneurships::findOrFail($id);
             $publishEntrepreneurship->delete();
 
             return response()->json([
