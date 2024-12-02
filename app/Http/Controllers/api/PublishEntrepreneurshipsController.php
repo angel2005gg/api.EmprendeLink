@@ -35,20 +35,31 @@ class PublishEntrepreneurshipsController extends Controller
             'logo_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'background' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'name_products' => 'required|array|min:1',
-            'product_images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'product_images' => 'required|array|min:1',
             'product_descriptions' => 'required|array|min:1',
         ]);
 
         try {
-            $logoUrl = Cloudinary::upload($request->file('logo')->getRealPath())->getSecurePath();
+            // Verifica si los archivos están presentes
+            if (!$request->hasFile('logo_path')) {
+                return response()->json(['message' => 'Logo file is required'], 400);
+            }
+            if (!$request->hasFile('background')) {
+                return response()->json(['message' => 'Background file is required'], 400);
+            }
+            if (!$request->hasFile('product_images')) {
+                return response()->json(['message' => 'Product images are required'], 400);
+            }
+    
+            // Subir los archivos a Cloudinary
+            $logoUrl = Cloudinary::upload($request->file('logo_path')->getRealPath())->getSecurePath();
             $backgroundUrl = Cloudinary::upload($request->file('background')->getRealPath())->getSecurePath();
-            $coverUrl = Cloudinary::upload($request->file('cover')->getRealPath())->getSecurePath();
-
             $productImages = [];
             foreach ($request->file('product_images') as $image) {
                 $productImages[] = Cloudinary::upload($image->getRealPath())->getSecurePath();
             }
-
+    
+            // Crear el emprendimiento con los datos validados
             $entrepreneurship = publish_Entrepreneurships::create([
                 'name' => $validated['name'],
                 'slogan' => $validated['slogan'],
@@ -61,7 +72,7 @@ class PublishEntrepreneurshipsController extends Controller
                 'product_descriptions' => json_encode($validated['product_descriptions']),
                 'entrepreneurs_id' => auth()->id(),
             ]);
-
+    
             return response()->json([
                 'message' => 'Emprendimiento creado exitosamente!',
                 'data' => $entrepreneurship,
