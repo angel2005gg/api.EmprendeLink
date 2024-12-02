@@ -30,19 +30,15 @@ class publish_Entrepreneurships extends Model
        // Campos para asignación masiva
        protected $fillable = [
         'name',
-        'phone_number',
-        'email',
-        'description',
-        'location',
-        'url',
+        'slogan',
         'category',
-        'expiration_date',
-        'specifications',
         'general_description',
         'logo_path',
-        'cover_path',
+        'background',
+        'name_products',
         'product_images',
         'product_descriptions',
+        'general_description',
         'entrepreneurs_id'
     ];
 
@@ -57,28 +53,30 @@ class publish_Entrepreneurships extends Model
     protected $allowFilter = [
         'id', 
         'name',
-        'phone_number',
-        'email',
-        'description',
-        'location',
-        'url',
+        'slogan',
         'category',
-        'expiration_date',
-        'specifications',
-        'general_description'
+        'general_description',
+        'logo_path',
+        'background',
+        'name_products',
+        'product_images',
+        'product_descriptions',
+        'general_description',
     ];
 
     // Campos permitidos para ordenar
     protected $allowSort = [
         'id', 
         'name',
-        'phone_number',
-        'email',
-        'description',
-        'location',
-        'url',
+        'slogan',
         'category',
-        'expiration_date'
+        'general_description',
+        'logo_path',
+        'background',
+        'name_products',
+        'product_images',
+        'product_descriptions',
+        'general_description',
     ];
     public function scopeIncluded(Builder $query)
     {
@@ -128,11 +126,6 @@ class publish_Entrepreneurships extends Model
         return $query->where('category', $category);
     }
 
-    // Scope para obtener emprendimientos activos (no expirados)
-    public function scopeActive($query)
-    {
-        return $query->where('expiration_date', '>', now());
-    }
 
     // Método para obtener la URL completa del logo
     public function getLogoUrlAttribute()
