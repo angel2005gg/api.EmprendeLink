@@ -28,7 +28,7 @@ class Entrepreneur extends Model
         'location',
         'number'
     ];
-    protected $allowIncluded = ['user'];
+    protected $allowIncluded = ['user_id'];
 
     /**
      * The entrepreneur belongs to many investors.
