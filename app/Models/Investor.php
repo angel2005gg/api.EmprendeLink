@@ -16,7 +16,7 @@ class Investor extends Model
         'name', 'lastname', 'birth_date', 'investment_number', 'password',
         'document', 'phone', 'image', 'email', 'location'
     ];
-    protected $allowIncluded = [ 'entrepreneursLists', 'entrepreneurs' ];
+    protected $allowIncluded = [ 'entrepreneursLists', 'entrepreneurs' ,'user'];
     protected $allowFilter = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
     protected $allowSort = ['id', 'name', 'lastname', 'birth_date', 'investment_number', 'password', 'document', 'phone', 'image', 'email', 'location'];
 
