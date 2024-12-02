@@ -10,9 +10,7 @@ class EntrepreneurshipController extends Controller
 {
     public function index()
     {
-        $entrepreneurships = Entrepreneurship::included()->get(); // Actualizado el nombre del modelo
-          $entrepreneurships = Entrepreneurship::included()->get();
-        $entrepreneurships=Entrepreneurship::included()->filter();
+        $entrepreneurships=Entrepreneurship::included()->get(); // Actualizado el nombre del modelo
         $entrepreneurships=Entrepreneurship::included()->filter()->sort()->get();
         $entrepreneurships=Entrepreneurship::included()->filter()->sort()->getOrPaginate();
         return response()->json($entrepreneurships);
@@ -26,7 +24,6 @@ class EntrepreneurshipController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
             'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',
@@ -50,7 +47,6 @@ class EntrepreneurshipController extends Controller
     public function update(Request $request, Entrepreneurship $entrepreneurship)
     {
         $request->validate([
-            'number' => 'required|integer', // Adaptado a los campos de la migración
             'entrepreneur_id' => 'nullable|exists:entrepreneurs,id',
             'investor_id' => 'nullable|exists:investors,id',
             'publish_Entrepreneurships_id' => 'nullable|exists:publish_Entrepreneurships,id',

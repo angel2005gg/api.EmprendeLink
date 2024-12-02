@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('entrepreneurships', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('number');
-
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                   ->references('id')
@@ -26,10 +24,10 @@ return new class extends Migration
                   ->references('id')
                   ->on('investors')->onDelete('cascade');
 
-                  $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
-                  $table->foreign('publish_Entrepreneurships_id')
-                        ->references('id')
-                        ->on('publish_Entrepreneurships')->onDelete('cascade');
+            $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
+            $table->foreign('publish_Entrepreneurships_id')
+                    ->references('id')
+                    ->on('publish_Entrepreneurships')->onDelete('cascade');
 
             $table->timestamps();
 

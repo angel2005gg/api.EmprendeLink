@@ -12,7 +12,7 @@ class Entrepreneurship extends Model // Cambiado el nombre del modelo a "Entrepr
 
     // Actualizado $fillable en base a los campos proporcionados en la migración
     protected $fillable = [
-        'number', 'entrepreneur_id', 'investor_id','publish_Entrepreneurships_id'
+        'entrepreneur_id', 'investor_id','publish_Entrepreneurships_id'
     ];
 
     protected $allowIncluded = [
