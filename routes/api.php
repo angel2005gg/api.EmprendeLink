@@ -62,9 +62,12 @@ Route::controller(InvestorController::class)->group(function () {
 
     Route::get('Entrepreneur', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
     Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
-    Route::get('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
-    Route::put('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
-    Route::delete('Entrepreneurs/{Entrepreneur}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
+    Route::get('Entrepreneurs/{id}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
+    Route::put('Entrepreneurs/{id}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
+    Route::delete('Entrepreneurs/{id}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
+
+
+
 
     Route::get('entrepreneurList', [EntrepreneurListController::class, 'index'])->name('api.entrepreneurLists.index');
     Route::post('entrepreneurLists', [EntrepreneurListController::class, 'store'])->name('api.entrepreneurLists.store');
@@ -104,6 +107,7 @@ Route::controller(InvestorController::class)->group(function () {
     // Route::get('/show/{id}',[EntrepreneurController::class,'show']);
     // Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
     // Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
+
 // Rutas para Myentrepreneurship
 Route::get('myentrepreneurships', [MyentrepreneurshipController::class, 'index'])->name('api.myentrepreneurships.index');
 Route::post('myentrepreneurship', [MyentrepreneurshipController::class, 'store'])->name('api.myentrepreneurships.store');

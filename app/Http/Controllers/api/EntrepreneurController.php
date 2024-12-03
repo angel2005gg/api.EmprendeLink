@@ -56,7 +56,7 @@ class EntrepreneurController extends Controller
     public function show($id) 
     {
         // Find an entrepreneur by ID
-        $entrepreneur = Entrepreneur::findOrFail($id);
+        $entrepreneur = Entrepreneur::with('user')->findOrFail($id);
         return response()->json($entrepreneur);
     }
 
