@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('entrepreneurships', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('entrepreneurs_id')->nullable();
+            $table->foreign('entrepreneurs_id')
+                ->references('id')
+                ->on('entrepreneurs')->onDelete('cascade');
+
 
             $table->unsignedBigInteger('investor_id')->nullable();
             $table->foreign('investor_id')
