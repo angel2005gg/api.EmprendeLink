@@ -28,19 +28,13 @@ class Entrepreneur extends Model
         'location',
         'number'
     ];
-    protected $allowIncluded = ['user_id'];
-
-    /**
-     * The entrepreneur belongs to many investors.
-     */
-    // Relación muchos a muchos con el modelo Investor
-    public function investors()
+    protected $allowIncluded = ['user'];
+        public function investors()
     {
         return $this->belongsToMany(Investor::class, 'connections', 'entrepreneurs_id', 'investors_id')
                     ->withPivot('chat') // Incluye el campo 'chat' de la tabla intermedia
                     ->withTimestamps(); // Incluye las marcas de tiempo
     }
-
     public function user()
     {
         return $this->belongsTo(User::class);
