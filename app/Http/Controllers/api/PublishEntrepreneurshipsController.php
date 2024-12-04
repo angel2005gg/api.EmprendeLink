@@ -21,7 +21,7 @@ class PublishEntrepreneurshipsController extends Controller
             'name_products' => 'required|string',
             'product_images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'product_descriptions' => 'required|string',
-            'entrepreneurs_id' => 'required|integer',
+            'entrepreneurs_id' => 'required|integer|exists:users,id'
 
             
         ]);
@@ -54,7 +54,7 @@ class PublishEntrepreneurshipsController extends Controller
                 'logo_path' => $logoUrl,
                 'background' => $backgroundUrl,
                 'name_products' => json_encode($validated['name_products']),
-                'product_images' => json_encode($productImagesUrls),
+                'product_images' => $productImagesUrls,
                 'product_descriptions' => json_encode($validated['product_descriptions']),
                 'entrepreneurs_id' => $validated['entrepreneurs_id'],
             ]);
