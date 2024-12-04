@@ -95,7 +95,7 @@ class UserController extends Controller
                 'birth_date' => 'required|date',
                 'password' => 'required|confirmed|min:8',
                 'phone' => 'required|integer|max:255',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen opcional
+                'image' => 'required|string',
                 'email' => 'required|string|email|max:255|unique:users',
                 'location' => 'required|string|max:255',
                 'number' => 'required|integer|max:255',
