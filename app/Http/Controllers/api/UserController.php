@@ -95,7 +95,7 @@ class UserController extends Controller
                 'birth_date' => 'required|date',
                 'password' => 'required|confirmed|min:8',
                 'phone' => 'required|integer|max:255',
-                'pic_profile' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen opcional
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen opcional
                 'email' => 'required|string|email|max:255|unique:users',
                 'location' => 'required|string|max:255',
                 'number' => 'required|integer|max:255',
@@ -103,13 +103,13 @@ class UserController extends Controller
 
             $imageUrl = $user->image; // Mantener imagen actual
 
-            if ($request->hasFile('pic_profile')) {
+            if ($request->hasFile('image')) {
                 if ($user->image) {
                     $publicId = pathinfo(parse_url($user->image, PHP_URL_PATH), PATHINFO_FILENAME);
                     Cloudinary::destroy($publicId);
                 }
 
-                $image = $request->file('pic_profile');
+                $image = $request->file('image');
                 $uploadedFile = Cloudinary::upload($image->getRealPath());
                 $imageUrl = $uploadedFile->getSecurePath();
             }
