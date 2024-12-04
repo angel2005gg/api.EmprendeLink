@@ -14,24 +14,25 @@ return new class extends Migration
         Schema::create('entrepreneurships', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('entrepreneurs_id')->nullable();
-            $table->foreign('entrepreneurs_id')
-                ->references('id')
-                ->on('entrepreneurs')->onDelete('cascade');
+            // Clave foránea a la tabla 'entrepreneurs'
+            $table->foreignId('entrepreneur_id') // Singular y más limpio
+                ->nullable()
+                ->constrained('entrepreneurs') // Hace referencia a la tabla 'entrepreneurs'
+                ->onDelete('cascade');
 
+            // Clave foránea a la tabla 'investors'
+            $table->foreignId('investor_id')
+                ->nullable()
+                ->constrained('investors') // Hace referencia a la tabla 'investors'
+                ->onDelete('cascade');
 
-            $table->unsignedBigInteger('investor_id')->nullable();
-            $table->foreign('investor_id')
-                  ->references('id')
-                  ->on('investors')->onDelete('cascade');
-
-            $table->unsignedBigInteger('publish_Entrepreneurships_id')->nullable();
-            $table->foreign('publish_Entrepreneurships_id')
-                    ->references('id')
-                    ->on('publish_Entrepreneurships')->onDelete('cascade');
+            // Clave foránea a la tabla 'publish_entrepreneurships'
+            $table->foreignId('publish_entrepreneurship_id') // Singular y limpio
+                ->nullable()
+                ->constrained('publish_entrepreneurships') // Hace referencia a la tabla
+                ->onDelete('cascade');
 
             $table->timestamps();
-
         });
     }
 
