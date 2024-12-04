@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('logo_path');
             $table->string('background');
             $table->string('name_products');
-            $table->string('product_images');
+            $table->json('product_images')->nullable();
             $table->text('product_descriptions');
             
             $table->unsignedBigInteger('entrepreneurs_id')->nullable();
