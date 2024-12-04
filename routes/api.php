@@ -123,10 +123,6 @@ Route::get('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::
 Route::put('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'update'])->name('api.entrepreneurships.update');
 Route::delete('entrepreneurships/{entrepreneurship}', [EntrepreneurshipController::class, 'destroy'])->name('api.entrepreneurships.delete');
 
-
-
-
-
 //prueva consumo de api registros para usuario
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
