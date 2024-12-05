@@ -35,7 +35,7 @@ class AuthController extends Controller
             'lastname' => 'required',
             'birth_date' => 'required|date',
             'password' => 'required|confirmed|min:8',
-            'phone' => 'required|string',
+            'phone' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'image' => 'required|string',
             'email' => 'required|email|unique:users',
             'location' => 'required|string',
