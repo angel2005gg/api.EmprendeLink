@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Entrepreneur; // Asegúrate de tener esta línea
 use App\Models\Investor;     // Y esta
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
@@ -51,6 +52,13 @@ class AuthController extends Controller
         try {
             DB::beginTransaction();
 
+            $imageUrl = null;
+            if (request()->hasFile('image')) {
+                $imageUrl = Cloudinary::upload(request()->file('image')->getRealPath(), [
+                    'folder' => 'register/profile_pics',
+                ])->getSecurePath();
+            }
+
             // Creamos el usuario
             $user = new User;
             $user->name = request()->name;
@@ -58,7 +66,7 @@ class AuthController extends Controller
             $user->birth_date = request()->birth_date;
             $user->password = bcrypt(request()->password);
             $user->phone = request()->phone;
-            $user->image = request()->image;
+            $user->image = $imageUrl;
             $user->email = request()->email;
             $user->location = request()->location;
             $user->number = request()->number;
