@@ -35,12 +35,13 @@ class UserController extends Controller
         ]);
 
         try {
-            $imageUrl = null;
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $uploadedFile = Cloudinary::upload($image->getRealPath());
-                $imageUrl = $uploadedFile->getSecurePath();
-            }
+            
+            // Cargar imágenes a Cloudinary
+        $imageUrl = Cloudinary::upload($request->file('image')->getRealPath(), [
+            'folder' => 'register/profile_pics',
+        ])->getSecurePath();
+
+                
 
             $user = User::create([
                 'name' => $validated['name'],
@@ -95,7 +96,7 @@ class UserController extends Controller
                 'birth_date' => 'required|date',
                 'password' => 'required|confirmed|min:8',
                 'phone' => 'required|integer|max:255',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagen opcional
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
                 'email' => 'required|string|email|max:255|unique:users',
                 'location' => 'required|string|max:255',
                 'number' => 'required|integer|max:255',
