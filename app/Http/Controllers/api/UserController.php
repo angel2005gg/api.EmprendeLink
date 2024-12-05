@@ -36,10 +36,13 @@ class UserController extends Controller
 
         try {
             
-            // Cargar imágenes a Cloudinary
-        $imageUrl = Cloudinary::upload($request->file('image')->getRealPath(), [
-            'folder' => 'register/profile_pics',
-        ])->getSecurePath();
+            if ($request->hasFile('image')) {
+                $imageUrl = Cloudinary::upload($request->file('image')->getRealPath(), [
+                    'folder' => 'register/profile_pics',
+                ])->getSecurePath();
+            } else {
+                $imageUrl = null; // Or a default image URL
+            }
 
                 
 
