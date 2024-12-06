@@ -130,7 +130,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'No tienes permisos de inversionista'], 403);
         }
         //cambios en esta linea
-      
+
 
         return $this->respondWithToken($token);
     }
@@ -150,13 +150,19 @@ class AuthController extends Controller
      * Log the user out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     *
      */
-    public function logout()
+    //realize cambios aqui para el cierre de sesion, no modifique ninguna otra linea
+    public function logout(Request $request)
     {
-        auth()->logout();
+        // Revocar el token actual
+        $request->user()->currentAccessToken()->delete();
 
+        // Responder con mensaje de éxito
         return response()->json(['message' => 'Successfully logged out']);
     }
+
 
     /**
      * Refresh a token.
