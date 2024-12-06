@@ -28,6 +28,8 @@ class PublishEntrepreneurshipsController extends Controller
 
     public function store(Request $request)
     {
+
+        
         // Validaciones
         $validated = $request->validate([
             'name' => 'required|string',
@@ -36,12 +38,15 @@ class PublishEntrepreneurshipsController extends Controller
             'general_description' => 'required|string',
             'logo_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'background' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name_products' => 'required|string',
+            'name_products' => 'required|array',
             'product_images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'product_descriptions' => 'required|string',
+            'product_descriptions' => 'required|array',
         ]);
 
         try {
+
+            dd($validated);
+
             $userId = Auth::id();
             // Cargar imágenes a Cloudinary
             $logoUrl = Cloudinary::upload($request->file('logo_path')->getRealPath(), [
@@ -118,10 +123,10 @@ class PublishEntrepreneurshipsController extends Controller
                 'general_description' => 'sometimes|required|string',
                 'logo_path' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
                 'background' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
-                'name_products' => 'sometimes|required|string',
+                'name_products' => 'sometimes|required|array',
                 'product_images.*' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
-                'product_descriptions' => 'sometimes|required|string',
-                //'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
+                'product_descriptions' => 'sometimes|required|array',
+                'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
             ]);
 
             // Actualizar campos
