@@ -5,6 +5,7 @@ use App\Models\publish_Entrepreneurships;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Auth;
 
 class PublishEntrepreneurshipsController extends Controller
 {
@@ -35,13 +36,13 @@ class PublishEntrepreneurshipsController extends Controller
             'general_description' => 'required|string',
             'logo_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'background' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'name_products' => 'required|string', // Cambia a string
+            'name_products' => 'required|string',
             'product_images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'product_descriptions' => 'required|string', // Cambia a string
-            'entrepreneurs_id' => 'required|integer|exists:users,id'
+            'product_descriptions' => 'required|string',
         ]);
 
         try {
+            $userId = Auth::id();
             // Cargar imágenes a Cloudinary
             $logoUrl = Cloudinary::upload($request->file('logo_path')->getRealPath(), [
                 'folder' => 'entrepreneurships/logos',
@@ -70,10 +71,10 @@ class PublishEntrepreneurshipsController extends Controller
                 'general_description' => $validated['general_description'],
                 'logo_path' => $logoUrl,
                 'background' => $backgroundUrl,
-                'name_products' => $validated['name_products'], // Mantén como string
-                'product_images' => $productImagesUrls, // Pasará por el mutador en el modelo
-                'product_descriptions' => $validated['product_descriptions'], // Mantén como string
-                'entrepreneurs_id' => $validated['entrepreneurs_id'],
+                'name_products' => $validated['name_products'],
+                'product_images' => $productImagesUrls,
+                'product_descriptions' => $validated['product_descriptions'],
+                'entrepreneurs_id' => $userId, // Asigna automáticamente el ID del usuario
             ]);
 
             return response()->json([
@@ -120,7 +121,7 @@ class PublishEntrepreneurshipsController extends Controller
                 'name_products' => 'sometimes|required|string',
                 'product_images.*' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
                 'product_descriptions' => 'sometimes|required|string',
-                'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
+                //'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
             ]);
 
             // Actualizar campos
