@@ -129,8 +129,8 @@ class AuthController extends Controller
         if ($credentials['role'] === 'investor' && !$user->investor) {
             return response()->json(['error' => 'No tienes permisos de inversionista'], 403);
         }
-//cambios en esta linea
-        $request->session()->put('token', $token);
+        //cambios en esta linea
+      
 
         return $this->respondWithToken($token);
     }
