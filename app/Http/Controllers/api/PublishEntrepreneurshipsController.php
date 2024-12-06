@@ -45,7 +45,7 @@ class PublishEntrepreneurshipsController extends Controller
 
         try {
 
-            dd($validated);
+            // dd($validated);
 
             $userId = Auth::id();
             // Cargar imágenes a Cloudinary
