@@ -39,8 +39,11 @@ class PublishEntrepreneurshipsController extends Controller
             'logo_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'background' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'name_products' => 'required|array',
+            'name_products.*' => 'required|string',
             'product_images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'product_descriptions' => 'required|array',
+            'product_descriptions' => 'required|string',
+            'entrepreneurs_id' => 'required|required|integer|exists:users,id'
         ]);
 
         try {
@@ -117,15 +120,17 @@ class PublishEntrepreneurshipsController extends Controller
             $entrepreneurship = publish_Entrepreneurships::findOrFail($id);
 
             $validated = $request->validate([
-                'name' => 'sometimes|required|string',
-                'slogan' => 'sometimes|required|string',
-                'category' => 'sometimes|required|string',
-                'general_description' => 'sometimes|required|string',
-                'logo_path' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
-                'background' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
-                'name_products' => 'sometimes|required|array',
-                'product_images.*' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
-                'product_descriptions' => 'sometimes|required|array',
+                'name' => 'sometimes|string',
+            'slogan' => 'sometimes|string',
+            'category' => 'sometimes|string',
+            'general_description' => 'sometimes|string',
+            'logo_path' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+            'background' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+            'name_products' => 'sometimes|array',
+            'name_products.*' => 'sometimes|string',
+            'product_images.*' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+            'product_descriptions' => 'sometimes|array',
+            'product_descriptions' => 'sometimes|string',
                 'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
             ]);
 
