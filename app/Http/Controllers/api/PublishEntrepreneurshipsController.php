@@ -41,7 +41,7 @@ class PublishEntrepreneurshipsController extends Controller
             'name_products' => 'required|array',
             'product_images.*' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'product_descriptions' => 'required|array',
-            'entrepreneurs_id' => 'required|required|integer|exists:users,id'
+            // 'entrepreneurs_id' => 'required|required|integer|exists:users,id'
         ]);
 
         try {
@@ -127,7 +127,7 @@ class PublishEntrepreneurshipsController extends Controller
                 'name_products' => 'sometimes|required|array',
                 'product_images.*' => 'sometimes|required|image|mimes:jpeg,png,jpg|max:2048',
                 'product_descriptions' => 'sometimes|required|array',
-                'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
+                // 'entrepreneurs_id' => 'sometimes|required|integer|exists:users,id'
             ]);
 
             // Actualizar campos
