@@ -86,7 +86,7 @@ class PublishEntrepreneurshipsController extends Controller
 
                  // Crear la entrada en Myentrepreneurships
         Myentrepreneurship::create([
-            'entrepreneur_id' => $userId,
+            'entrepreneurs_id' => $userId,
             'publish_Entrepreneurships_id' => $entrepreneurship->id,
         ]);
 
