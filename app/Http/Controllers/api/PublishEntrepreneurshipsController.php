@@ -50,6 +50,8 @@ class PublishEntrepreneurshipsController extends Controller
             // dd($validated);
 
             $userId = Auth::id();
+            dd($userId); 
+            
             // Cargar imágenes a Cloudinary
             $logoUrl = Cloudinary::upload($request->file('logo_path')->getRealPath(), [
                 'folder' => 'entrepreneurships/logos',
