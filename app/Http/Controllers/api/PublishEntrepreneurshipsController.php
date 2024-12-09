@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 use App\Models\publish_Entrepreneurships;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Myentrepreneurship;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +83,12 @@ class PublishEntrepreneurshipsController extends Controller
                 'product_descriptions' => $validated['product_descriptions'],
                 'entrepreneurs_id' => $userId, // Asigna automáticamente el ID del usuario
             ]);
+
+                 // Crear la entrada en Myentrepreneurships
+        Myentrepreneurship::create([
+            'entrepreneur_id' => $userId,
+            'publish_Entrepreneurships_id' => $entrepreneurship->id,
+        ]);
 
             return response()->json([
                 'message' => 'Emprendimiento creado exitosamente!',
