@@ -30,7 +30,7 @@ class PublishEntrepreneurshipsController extends Controller
 
     public function store(Request $request)
     {
-
+        $user = $request->user(); // Obtener el usuario autenticado
         
         // Validaciones
         $validated = $request->validate([
