@@ -25,6 +25,11 @@ class publish_Entrepreneurships extends Model
         'entrepreneurs_id'
     ];
 
+    public function user()
+{
+    return $this->belongsTo(User::class, 'entrepreneurs_id');
+}
+
     // Mutadores para asegurar que product_images, product_descriptions y name_products se guarden como string
     public function setProductImagesAttribute($value)
     {
