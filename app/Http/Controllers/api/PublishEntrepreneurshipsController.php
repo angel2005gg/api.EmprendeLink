@@ -183,6 +183,7 @@ class PublishEntrepreneurshipsController extends Controller
             ], 500);
         }
     }
+    
 
     public function destroy($id)
     {
