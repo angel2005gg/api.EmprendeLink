@@ -169,6 +169,58 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
+
+     // solo agrege este fragmento de codigo como prueva para actualizar perfil
+
+
+     public function update(Request $request)
+     {
+         $user = auth()->user();
+
+         // Validación de campos
+         $validator = Validator::make($request->all(), [
+             'name' => 'sometimes|string|max:255',
+             'lastname' => 'sometimes|string|max:255',
+             'birth_date' => 'sometimes|date',
+             'phone' => 'sometimes|string|max:20',
+             'image' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
+             'email' => 'sometimes|email|unique:users,email,' . $user->id,
+             'location' => 'sometimes|string|max:255',
+             'number' => 'sometimes|integer',
+         ]);
+
+         if ($validator->fails()) {
+             return response()->json($validator->errors()->toJson(), 400);
+         }
+
+         try {
+             if ($request->hasFile('image')) {
+                 $imageUrl = Cloudinary::upload($request->file('image')->getRealPath(), [
+                     'folder' => 'profile_pics',
+                 ])->getSecurePath();
+                 $user->image = $imageUrl;
+             }
+
+             $user->fill($request->only([
+                 'name', 'lastname', 'birth_date', 'phone', 'email', 'location', 'number'
+             ]));
+
+             $user->save();
+
+             return response()->json(['message' => 'Perfil actualizado correctamente', 'user' => $user], 200);
+
+         } catch (\Exception $e) {
+             return response()->json(['error' => 'Error al actualizar perfil', 'message' => $e->getMessage()], 500);
+         }
+     }
+
+
+
+
+
+
+
+
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
@@ -192,4 +244,5 @@ class AuthController extends Controller
         ]);
     }
 }
+
 
