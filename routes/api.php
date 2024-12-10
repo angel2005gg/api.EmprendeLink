@@ -47,12 +47,7 @@ Route::controller(InvestorController::class)->group(function () {
     Route::delete('/investors/{investor}', 'destroy')->name('api.investors.destroy');
 });
 
-    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
-    Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
-    Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
-    Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
-    Route::delete('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'destroy'])->name('api.publish_Entrepreneurships.delete');
-
+   
 
     Route::get('review', [ReviewController::class,'index'])->name('api.reviews.index');
     Route::post('review', [ReviewController::class,'store'])->name('api.reviews.store');
@@ -126,7 +121,24 @@ Route::delete('entrepreneurships/{entrepreneurship}', [EntrepreneurshipControlle
 //prueva consumo de api registros para usuario
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+    Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
+    Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
+    Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
+    Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'update'])->name('api.publish_Entrepreneurships.update');
+    Route::delete('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'destroy'])->name('api.publish_Entrepreneurships.delete');
+
+
+    
+
+
+
+
+
     return $request->user();
+
+
+
 });
 
 Route::group([
