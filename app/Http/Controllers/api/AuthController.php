@@ -173,10 +173,6 @@ class AuthController extends Controller
      // solo agrege este fragmento de codigo como prueva para actualizar perfil
 
 
-
-
-
-     
      public function update(Request $request)
      {
          $user = auth()->user();
