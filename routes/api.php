@@ -70,10 +70,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('publicare', [PublishEntrepreneurshipsController::class, 'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class, 'guardarEmprendimiento'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'show'])->name('api.publish_Entrepreneurships.show');
