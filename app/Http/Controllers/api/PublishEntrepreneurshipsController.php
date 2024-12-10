@@ -51,10 +51,15 @@ class PublishEntrepreneurshipsController extends Controller
             // dd($validated);
 
             
+            if (!Auth::check()) {
+                return response()->json([
+                    'message' => 'Usuario no autenticado'
+                ], 401);
+            }
+        
+            $userId = Auth::id();
 
-            // $userId = Auth::id();
-
-
+        
             $user = Auth::user();
             Log::info('Usuario autenticado:', [
                 'id' => $user ? $user->id : 'No autenticado',
