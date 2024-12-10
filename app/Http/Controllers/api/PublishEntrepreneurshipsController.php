@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Myentrepreneurship;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class PublishEntrepreneurshipsController extends Controller
 {
@@ -30,8 +29,7 @@ class PublishEntrepreneurshipsController extends Controller
 
     public function store(Request $request)
     {
-        $user = $request->user(); 
-          $user = Auth::user();// Obtener el usuario autenticado
+
         
         // Validaciones
         $validated = $request->validate([
@@ -51,35 +49,7 @@ class PublishEntrepreneurshipsController extends Controller
 
             // dd($validated);
 
-            
-            if (!Auth::check()) {
-                return response()->json([
-                    'message' => 'Usuario no autenticado'
-                ], 401);
-            }
-        
             $userId = Auth::id();
-
-        
-            $user = Auth::user();
-            Log::info('Usuario autenticado:', [
-                'id' => $user ? $user->id : 'No autenticado',
-                'name' => $user ? $user->name : 'N/A'
-            ]);
-    
-            // Obtener ID de usuario
-            $userId = Auth::id();
-            Log::info('User ID:', [
-                'userId' => $userId
-            ]);
-    
-            // Resto de tu código...
-        } catch (\Exception $e) {
-            Log::error('Error en publicación de emprendimiento', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-        }
             
        
 
@@ -127,12 +97,12 @@ class PublishEntrepreneurshipsController extends Controller
                 'message' => 'Emprendimiento creado exitosamente!',
                 'data' => $entrepreneurship,
             ], 201);
-        // } catch (\Exception $e) {
-        //     return response()->json([
-        //         'message' => 'Error al crear el emprendimiento.',
-        //         'error' => $e->getMessage(),
-        //     ], 500);
-        // }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al crear el emprendimiento.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function show($id)
