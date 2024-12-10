@@ -64,20 +64,17 @@ Route::get('/prueba', function () {
 //prueva consumo de api registros para usuario
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-
-
-
-});
-
-Route::middleware('auth:sanctum')->group(function () {
+    
     Route::get('publicare', [PublishEntrepreneurshipsController::class, 'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class, 'guardarEmprendimiento'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'show'])->name('api.publish_Entrepreneurships.show');
     Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'update'])->name('api.publish_Entrepreneurships.update');
     Route::delete('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'destroy'])->name('api.publish_Entrepreneurships.delete');
+
+    return $request->user();
+
 });
-    
+
 
     Route::controller(InvestorController::class)->group(function () {
         Route::get('/investores', 'index')->name('api.investors.index');
