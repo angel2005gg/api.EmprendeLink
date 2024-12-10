@@ -68,13 +68,15 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+});
+
     // Move these routes outside of the user route
     Route::get('publicare', [PublishEntrepreneurshipsController::class, 'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class, 'store'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'show'])->name('api.publish_Entrepreneurships.show');
     Route::put('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'update'])->name('api.publish_Entrepreneurships.update');
     Route::delete('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class, 'destroy'])->name('api.publish_Entrepreneurships.delete');
-});
+
 
 
     Route::controller(InvestorController::class)->group(function () {
