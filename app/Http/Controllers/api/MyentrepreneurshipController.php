@@ -10,32 +10,29 @@ use Illuminate\Support\Facades\Auth;
 class MyentrepreneurshipController extends Controller
 {
     public function index()
-    {
-        try {
-            // Obtener el usuario autenticado
-            $user = Auth::user();
+{
+    try {
+        $user = Auth::user();
 
-            if (!$user) {
-                return response()->json(['message' => 'Usuario no autenticado'], 401);
-            }
-
-            // Filtrar los emprendimientos por el ID del usuario
-            $myentrepreneurships = Myentrepreneurship::where('entrepreneur_id', $user->id)
-                ->included()
-                ->filter()
-                ->sort()
-                ->getOrPaginate();
-
-            return response()->json([
-                'message' => 'Emprendimientos recuperados exitosamente',
-                'data' => $myentrepreneurships
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Error al recuperar los emprendimientos',
-                'error' => $e->getMessage()
-            ], 500);
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no autenticado'], 401);
         }
+
+        // Filtrar emprendimientos por el usuario autenticado
+        $myentrepreneurships = Myentrepreneurship::where('entrepreneur_id', $user->id)
+            ->with('publish_Entrepreneurships') // Incluir datos relacionados
+            ->get();
+
+        return response()->json([
+            'message' => 'Emprendimientos recuperados exitosamente',
+            'data' => $myentrepreneurships
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Error al recuperar los emprendimientos',
+            'error' => $e->getMessage()
+        ], 500);
+    }
     }
 
     public function store(Request $request)

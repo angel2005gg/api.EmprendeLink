@@ -12,16 +12,16 @@ class Myentrepreneurship extends Model
 
     // Campos que se pueden asignar masivamente
     protected $fillable = [
-        'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'
+        'entrepreneur_id', 'publish_Entrepreneurships_id',  'Review_id'
     ];
 
     protected $allowIncluded = [
-        'entrepreneur', 'publish_Entrepreneurships', 'investor', 'Review',
+        'entrepreneur', 'publish_Entrepreneurships',  'Review',
     ];
 
-    protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'];
+    protected $allowFilter = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'Review_id'];
 
-    protected $allowSort = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'investor_id', 'Review_id'];
+    protected $allowSort = ['id', 'entrepreneur_id', 'publish_Entrepreneurships_id', 'Review_id'];
 
     // Relaciones
 
@@ -35,10 +35,10 @@ class Myentrepreneurship extends Model
         return $this->belongsTo(Publish_Entrepreneurships::class, 'publish_Entrepreneurships_id');
     }
 
-    public function investor()
-    {
-        return $this->belongsTo(Investor::class);
-    }
+    // public function investor()
+    // {
+    //     return $this->belongsTo(Investor::class);
+    // }
 
    public function Review()
 {
