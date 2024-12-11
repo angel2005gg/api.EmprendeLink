@@ -69,7 +69,11 @@ class User extends Authenticatable implements JWTSubject
      {
          return $this->hasOne(Entrepreneur::class);
      }
- 
+     
+     public function publishEntrepreneurships()
+{
+    return $this->hasMany(publish_Entrepreneurships::class, 'entrepreneurs_id');
+}
  
 
     public function getJWTIdentifier()
