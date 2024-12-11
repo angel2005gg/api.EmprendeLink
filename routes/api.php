@@ -39,14 +39,6 @@ Route::get('/prueba', function () {
 });
 
 
-Route::controller(InvestorController::class)->group(function () {
-    Route::get('/investores', 'index')->name('api.investors.index');
-    Route::post('/investor', 'store')->name('api.investors.store');
-    Route::get('/investors/{investor}', 'show')->name('api.investors.show');
-    Route::put('/investors/{investor}', 'update')->name('api.investors.update');
-    Route::delete('/investors/{investor}', 'destroy')->name('api.investors.destroy');
-});
-
     Route::get('publicare', [PublishEntrepreneurshipsController::class,'index'])->name('api.publish_Entrepreneurships.index');
     Route::post('publicare', [PublishEntrepreneurshipsController::class,'store'])->name('api.publish_Entrepreneurships.store');
     Route::get('publicare/{publishEntrepreneurship}', [PublishEntrepreneurshipsController::class,'show'])->name('api.publish_Entrepreneurships.show');
@@ -60,12 +52,7 @@ Route::controller(InvestorController::class)->group(function () {
     Route::put('review/{review}', [ReviewController::class,'update'])->name('api.reviews.update');
     Route::delete('review/{review}', [ReviewController::class,'destroy'])->name('api.reviews.delete');
 
-    Route::get('Entrepreneur', [EntrepreneurController::class, 'index'])->name('api.Entrepreneurs.index');
-    Route::post('Entrepreneurs', [EntrepreneurController::class, 'store'])->name('api.Entrepreneurs.store');
-    Route::get('Entrepreneurs/{id}', [EntrepreneurController::class, 'show'])->name('api.Entrepreneurs.show');
-    Route::put('Entrepreneurs/{id}', [EntrepreneurController::class, 'update'])->name('api.Entrepreneurs.update');
-    Route::delete('Entrepreneurs/{id}', [EntrepreneurController::class, 'destroy'])->name('api.Entrepreneurs.delete');
-
+  
 
 
 
@@ -94,20 +81,7 @@ Route::controller(InvestorController::class)->group(function () {
         Route::delete('/delete/{create_review}',[ReviewController::class,'destroy']);
     });
 
-    // // Route::prefix(prefix: 'investors')->group(function(){
-    //     Route::post('/create',[InvestorController::class,'store']);
-    //     Route::get('/investors_listar',[InvestorController::class,'index']);
-    //     Route::get('/show/{id}',[InvestorController::class,'show']);
-    //     Route::put('/update/{connection}',[InvestorController::class,'update']);
-    //     Route::delete('/delete/{connection}',[InvestorController::class,'destroy']);
-    // // });
-
-    // Route::post('/create',[EntrepreneurController::class,'store']);
-    // Route::get('/entrepeneur_listar',[EntrepreneurController::class,'index']);
-    // Route::get('/show/{id}',[EntrepreneurController::class,'show']);
-    // Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
-    // Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
-
+  
 // Rutas para Myentrepreneurship
 Route::get('myentrepreneurships', [MyentrepreneurshipController::class, 'index'])->name('api.myentrepreneurships.index');
 Route::post('myentrepreneurship', [MyentrepreneurshipController::class, 'store'])->name('api.myentrepreneurships.store');
@@ -138,4 +112,24 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
     Route::post('/me', [AuthController::class, 'me'])->name('me');
+
+
+    Route::prefix(prefix: 'investors')->group(function(){
+        Route::post('/create',[InvestorController::class,'store']);
+        Route::get('/investors_listar',[InvestorController::class,'index']);
+        Route::get('/show/{id}',[InvestorController::class,'show']);
+        Route::put('/update/{connection}',[InvestorController::class,'update']);
+        Route::delete('/delete/{connection}',[InvestorController::class,'destroy']);
+    });
+
+    Route::prefix(prefix: 'emprededor')->group(function(){
+    Route::post('/create',[EntrepreneurController::class,'store']);
+    Route::get('/entrepeneur_listar',[EntrepreneurController::class,'index']);
+    Route::get('/show/{id}',[EntrepreneurController::class,'show']);
+    Route::put('/update/{connection}',[EntrepreneurController::class,'update']);
+    Route::delete('/delete/{connection}',[EntrepreneurController::class,'destroy']);
 });
+    
+});
+
+
